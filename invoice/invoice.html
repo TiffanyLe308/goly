@@ -1,0 +1,238 @@
+<div class="app-page">
+    <header main-nav ng-if="!visitor"></header>
+    <header visitor-nav class="visitor-nav" ng-if="visitor"></header>
+    <div class="app-content invoice">
+        <div class="invoice-header">
+            <a href="" ng-click="backtoShop()">
+                <img class="backButton" src="/images/next.png" alt=""/>
+            </a>
+            <div class="invoice-header-number">
+                Invoice #{{invoice.invoiceNo}}
+            </div>
+
+            <div class="invoice-mobile">
+
+              <a href="" ng-click="sendInvitation()">
+                  <img src="/images/share_dark.png" alt=""/>
+              </a>
+
+              <a href="" confirm="Are you sure to delete the invoice ?" ng-click="deleteInvoice()">
+                  <img src="/images/delete_red.png" alt=""/>
+              </a>
+            </div>
+        </div>
+        <div class="invoice-action-data-wrap">
+            <div class="invoice-wrap">
+                <div class="invoice-top-section-wrap">
+                    <div class="invoice-amount-and-user-wrap">
+                        <div class="invoice-verticle-info-block">
+                            <label>Billed to</label>
+                            <p>{{invoice.customer}}</p>
+                        </div>
+                        <div class="invoice-verticle-info-block">
+                            <label>Total Amount</label>
+                            <h3>{{invoice.amount}}{{invoice.currencySign}}</h3>
+                        </div>
+                    </div>
+                    <div class="invoice-status-wrap">
+                        <div class="invoice-verticle-info-block">
+                            <label>Status</label>
+                            <p>Amount {{invoice.amount}}{{invoice.currencySign}}</p>
+                        </div>
+                        <div class="invoice-progress-bar-back">
+                            <div class="invoice-progress-bar-moving" style="width: 100%;">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="invoice-body-wrap">
+                    <div class="invoice-hori-info-block">
+                        <label>Invoice Number</label>
+                        <div>
+                            <p>
+                                {{invoice.number}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="invoice-hori-info-block">
+                        <label>{{invoice.service}}</label>
+                        <div>
+                            <p>
+                                {{invoice.service}}
+                            </p>
+                            <p>
+                                {{invoice.service}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="invoice-hori-info-block">
+                        <label>Billing date: </label>
+                        <div>
+                            <p>
+                                {{invoice.billingDate | date:'dd-MM-yyyy'}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="invoice-hori-info-block">
+                        <label>Due date: </label>
+                        <div>
+                            <p>
+                                {{invoice.dueDate | date:'dd-MM-yyyy'}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="invoice-hori-info-block">
+                        <label>Payments</label>
+                        <div class="invoice-payment-wrap" ng-repeat="payment in invoice.listPayments">
+                          <h3 class="invoice-payment-amount">{{invoice.amount}}{{invoice.currencySign}}</h3>
+                          <p class="invoice-payment-date">{{payment.paymentDate | date:'dd-MM-yyyy'}}</p>
+                          <p class="invoice-payment-method">{{invoice.type}}</p>
+                        </div>
+                    </div>
+                    <div class="invoice-hori-info-block">
+                        <label>Payment status</label>
+                        <div class="invoice-payment-paid">
+                          <p class="invoice-payment-status">{{invoice.status}}</p>
+                            <button type="button" ng-show="invoice.status=='UNPAID'" ng-click="openAddPaymentModal()">
+                              +Add payment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="invoice-actions-wrap">
+              <!-- <div class="invoice-action">
+                  <img src="/images/send_dark.png" alt=""/>
+                  <p ng-click="sendInvitation">
+                      Send Invoice
+                  </p>
+              </div> -->
+              <div class="invoice-action">
+                  <img src="/images/share_dark.png" alt=""/>
+                  <a href="" ng-click="sendInvitation()">
+                      Invite friends
+                  </a>
+              </div>
+              <div class="invoice-action delete-invoice-action">
+                  <img src="/images/delete_red.png" alt=""/>
+                  <a href="" confirm="Are you sure to delete the invoice ?" ng-click="deleteInvoice()">
+                    Delete invoice
+                  </a>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--<header main-nav></header>
+<div class="main-container">
+    <div class="invoice-wrap">
+        <div class="invoice-top-section">
+            <div class="invoice-top-header">
+
+
+            <div class="invoice-heading">Invoice</div>
+            <div class="" style="float: right;">
+                <div class="dropdown">
+                    <div class="invoice-more-icon" on-toggle="toggled(open)" uib-dropdown>
+                        <span class="glyphicon glyphicon-option-vertical dropdown-toggle" data-toggle="dropdown" id="invoiceDropdown"></span>
+                        <ul aria-labelledby="menu1" class="dropdown-menu invoice-dropdown-menu" role="menu">
+                            <li role="presentation">
+                                <a href="#" role="menuitem" tabindex="-1">Edit</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#" role="menuitem" tabindex="-1">Send invoice</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#" role="menuitem" tabindex="-1">Delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="invoice-top-section-info">
+                <div class="invoice-top-item">
+                    <div class="invoice-top-item-detail">
+                        {{invoice.customer}}
+                    </div>
+                    <div class="invoice-top-item-label">
+                        London, UK
+                    </div>
+                </div>
+                <div class="invoice-top-item invoice-amount">
+                    <div class="invoice-top-item-detail">
+                        {{invoice.amount}}{{invoice.currencySign}}
+                    </div>
+                    <div class="invoice-top-item-label">
+                        Amount
+                    </div>
+                </div>
+                <div class="invoice-top-item invoice-status">
+                    <div class="invoice-top-item-detail">
+                        {{invoice.status}}
+                    </div>
+                    <div class="invoice-top-item-label">
+                        Status
+                    </div>
+                    <uib-progressbar animate="false" value="75" type="success"><b>75%</b></uib-progressbar>
+                </div>
+            </div>
+        </div>
+        <div class="invoice-bottom-section">
+            <div class="invoice-bottom-item">
+                <div class="invoice-bottom-label">
+                    Invoice Number
+                </div>
+                <div class="invoice-bottom-detail">
+                    #{{invoice.invoiceNo}}
+                </div>
+            </div>
+            <div class="invoice-bottom-item">
+                <div class="invoice-bottom-label">
+                    Service
+                </div>
+                <div class="invoice-bottom-detail">
+                    {{invoice.service}}
+                </div>
+            </div>
+            <div class="invoice-bottom-item">
+                <div class="invoice-bottom-label">
+                    Billing date
+                </div>
+                <div class="invoice-bottom-detail">
+                    {{invoice.billingDate | date:'dd-MM-yyyy'}}
+                </div>
+            </div>
+            <div class="invoice-bottom-item">
+                <div class="invoice-bottom-label">
+                    Due date
+                </div>
+                <div class="invoice-bottom-detail">
+                    {{invoice.dueDate | date:'dd-MM-yyyy'}}
+                </div>
+            </div>
+            <div class="invoice-bottom-item">
+                <div class="invoice-bottom-label">
+                    Payment
+                </div>
+                <div class="invoice-bottom-detail">
+                    <div class="invoice-payment-wrap" ng-repeat="payment in invoice.listPayments">
+                        <div class="invoice-payment-amount">{{payment.amount}}{{invoice.currencySign}}</div>
+                        <div class="invoice-payment-date">{{payment.paymentDate | date:'dd-MM-yyyy'}}</div>
+                        <div class="invoice-payment-method">Added manually</div>
+                        <div class="invoice-payment-delete ">
+                            <a href="" confirm="Are you sure to delete the payment: {{payment.amount}}{{invoice.currencySign}}?" ng-click="removePayment(payment)"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>
+                    </div>
+                    <div class="invoice-payment-wrap">
+                        <button type="button" ng-show="invoice.status=='UNPAID'" ng-click="openAddPaymentModal()">Add payment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->

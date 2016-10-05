@@ -1,0 +1,308 @@
+.invoice {
+    .invoice-header {
+        font-size: 25px;
+        font-weight: 300;
+        margin: 25px 0 0;
+        padding: 0 5px 5px 5px;
+        border-bottom: 1px solid $colorGreyBorder;
+        line-height: normal;
+        width: 100%;
+        display: inline-flex;
+        .invoice-header-number {
+            width: 30%;
+            margin-left: 5px;
+            @include mobile {
+                -webkit-box-flex: 3;
+                flex-grow: 3;
+            }
+        }
+        .invoice-mobile {
+            display: none;
+            @include mobile {
+                display: inline-block;
+                border-bottom: 1px solid #eceff1;
+                text-align: right;
+                img {
+                    width: 35%;
+                }
+            }
+        }
+        .backButton {
+            height: 30px;
+            width: auto;
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+    }
+    .invoice-action-data-wrap {
+        width: 100%;
+        display: flex;
+        position: relative;
+        .invoice-wrap {
+            width: 75%;
+            min-width: 75%;
+            border-right: 1px solid $colorGreyBorder;
+            border-left: 1px solid $colorGreyBorder;
+            border-bottom: 1px solid $colorGreyBorder;
+            .invoice-top-section-wrap {
+                display: flex;
+                background: $colorBlueLight;
+                justify-content: space-between;
+                padding: 35px 25px 15px;
+                align-items: flex-end;
+                .invoice-amount-and-user-wrap {
+                    display: flex;
+                    flex-direction: column;
+                }
+                .invoice-status-wrap {
+                    display: flex;
+                    position: relative;
+                    text-align: right;
+                    padding-bottom: 15px;
+                    .invoice-progress-bar-back {
+                        position: absolute;
+                        bottom: 20px;
+                        right: 0;
+                        background: $colorMain;
+                        width: 100%;
+                        height: 10px;
+                        .invoice-progress-bar-moving {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            bottom: 0;
+                            background: $colorBlue;
+                        }
+                    }
+                }
+            }
+            .invoice-body-wrap {
+                padding: 35px 25px 20px;
+            }
+            @include mobile {
+                width: 100%;
+            }
+        }
+        .invoice-actions-wrap {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 25px 0 25px 25px;
+            .invoice-action {
+                height: 66px;
+                min-height: 66px;
+                border-bottom: 1px solid #eceff1;
+                display: flex;
+                align-items: center;
+                transition: all 0.3s ease-out;
+                @include tablet {
+                    transition: none;
+                }
+                &:hover {
+                    background: $colorBlueLight;
+                    cursor: pointer;
+                    padding-left: 15px;
+                    @include tablet {
+                        padding-left: 0;
+                    }
+                    @include mobile {
+                        padding-left: 0;
+                    }
+                }
+                img {
+                    width: 20px;
+                    margin-right: 10px;
+                }
+                p {
+                    font-size: 14px;
+                    font-weight: 300;
+                }
+            }
+            .delete-invoice-action {
+                color: $colorRed;
+            }
+            @include mobile {
+                display: none
+            }
+        }
+    }
+}
+
+.invoice-verticle-info-block {
+    margin-bottom: 20px;
+    label {
+        color: #888f94;
+        font-size: 13px;
+        margin-bottom: 3px;
+    }
+    p {
+        font-size: 15px;
+        font-weight: 300;
+    }
+    h3 {
+        font-size: 15px;
+        font-weight: 500;
+    }
+}
+
+.invoice-hori-info-block {
+    display: flex;
+    margin-bottom: 25px;
+    align-items: baseline;
+    label {
+        color: #888f94;
+        font-size: 13px;
+        margin-bottom: 3px;
+        width: 40%;
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        p {
+            font-size: 15px;
+            font-weight: 300;
+        }
+        h3 {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        section {
+            margin-bottom: 35px;
+        }
+        button {
+            background: transparent;
+            transition: all 0.3s ease-out;
+            color: $colorMain;
+            &:hover {
+                background: $colorBlue;
+                color: #ffffff;
+                border: none;
+            }
+        }
+    }
+}
+
+.invoice-top-section {
+    background: #36434c;
+    color: #ffffff;
+    position: relative;
+    overflow: auto;
+    padding: 50px;
+}
+
+.invoice-top-header {
+    width: 100%;
+    clear: both;
+    overflow: auto;
+    margin-bottom: 50px;
+}
+
+.invoice-heading {
+    font-size: 30px;
+    float: left;
+}
+
+.invoice-more-icon {
+    position: relative;
+
+    font-size: 20px;
+}
+
+.invoice-dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+.invoice-top-item {
+    margin: 10px 0;
+}
+
+.invoice-top-item-detail {
+    font-size: 20px;
+}
+
+.invoice-top-item-label {
+    font-size: 14px;
+}
+
+.invoice-amount {
+    float: left;
+}
+
+.invoice-status {
+    float: right;
+    margin: 0;
+    text-align: right;
+    width: 300px;
+}
+
+.invoice-bottom-section {
+    padding: 50px;
+    overflow: auto;
+}
+
+.invoice-bottom-item {
+    margin: 25px 0;
+    overflow: auto;
+}
+
+.invoice-bottom-label {
+    width: 25%;
+    float: left;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.invoice-bottom-detail {
+    width: 75%;
+    float: left;
+    font-size: 16px;
+}
+
+.invoice-payment-wrap {
+    position: relative;
+}
+
+.invoice-payment-status {
+  margin-bottom: 20px;
+}
+
+.invoice-payment-delete {
+    display: none;
+}
+
+.invoice-payment-wrap:hover .invoice-payment-delete {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.invoice-payment-amount {
+    font-weight: 500;
+}
+
+.invoice-payment-date {
+    font-size: 14px;
+}
+
+.invoice-payment-method {
+    font-size: 14px;
+}
+
+.progress {
+    height: 4px;
+    overflow: visible;
+}
+
+.progress-bar {
+    font-size: 14px;
+    text-align: left;
+    position: relative;
+}
+
+.progress-bar b {
+    font-weight: normal;
+    margin-top: -20px;
+    position: absolute;
+}

@@ -1,0 +1,288 @@
+<div class="app-page service-page">
+    <header main-nav></header>
+
+    <div class="alert alert-success alert-dismissible goly-banner banner-green banner-width" role="alert"
+         ng-show="0">
+        <div class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+        <h3>New Update!</h3>
+        The link to your service now has your service name in it. Check how cool it is and share with your
+        friends!<br/>
+        {{currentUrl}}
+    </div>
+
+    <div class="app-content service" ng-show="initialised" goly-tutorial>
+        <div class="service-gallery-section">
+            <div class="service-gallery">
+                <div class="service-gallery-image full-background-image clickable"
+                     ng-repeat="picture in service.pictures"
+                     ng-attr-style="background-image: url({{getThumbnail(picture)}})"
+                     ng-click="openLightboxModal($index)" mixpanel-trigger="click" mixpanel-event="VIEW"
+                     track-type="Service Image">
+                </div>
+                <div class="service-gallery-image full-background-image no-image"
+                     ng-if="service.pictures.length == 0">
+                </div>
+            </div>
+        </div>
+
+        <div class="service-info-section">
+
+            <div class="service-info-wrap">
+                <h2 class="underline-style-section-header">{{service.name}}
+                    <div></div>
+                </h2>
+
+
+                <div id="service-gallery-carousel" class="mobile-gallery carousel slide" data-ride="carousel">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item" ng-repeat="picture in service.pictures" ng-click="openLightboxModal($index)"
+                             ng-class="{'active': $index == 0}">
+                            <div class="img"
+                                 style="background-image: url({{getThumbnail(picture)}});">
+                            </div>
+                        </div>
+                        <div class="item active"
+                             ng-if="service.pictures.length == 0">
+                            <div class="img"
+                                 style="background-image: url(/images/no_image.png);"></div>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a ng-non-bindable class="left carousel-control" href="#service-gallery-carousel" role="button"
+                       data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    </a>
+                    <a ng-non-bindable class="right carousel-control" href="#service-gallery-carousel" role="button"
+                       data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <div class="service-info-block" ng-if="!isOwner">
+                    <button class="btn btn-success" id="intro-service-order"
+                            ng-click="openOrderServiceModal(service.id, service.shopId); $event.stopPropagation();">
+                        Order Now
+                    </button>
+                    <button class="btn btn-default" id="intro-service-message"
+                            ng-click="openSendMessageModal(service.id, service.shopId); $event.stopPropagation();">
+                        Send Message
+                    </button>
+                </div>
+
+                <div class="service-price service-info-block">
+
+                    Starting price from
+                    <div class="price-before" ng-if="service.discountRate>0">
+                        {{service.price | currency:service.currencySign}}
+                    </div>
+                    <div class="price-after">
+                        {{service.price | currency:service.currencySign}}
+                    </div>
+                </div>
+
+                <div class="service-category service-info-block">
+                    <h4 class="service-info-label">Category</h4>
+                    <p>{{service.categoryName}} > {{service.subCategoryNames[0]}}</p>
+                </div>
+
+                <div class="service-event-type service-info-block">
+                    <h4 class="service-info-label">Event Type</h4>
+                    <p>
+                        <span ng-repeat="eventType in service.tags">{{eventType}}<span
+                                ng-if="!$last">,&nbsp;</span></span>
+                    </p>
+                </div>
+
+                <div class="service-provider-wrap service-info-block">
+                    <h4 class="service-info-label">Provided by</h4>
+                    <div class="service-provider">
+                        <a class="service-provider-image full-background-image clickable"
+                           style="background-image: url({{shop.logo}});"
+                           ng-href="{{generateLink(shop, 'shop')}}" ng-if="shop.logo"></a>
+                        <a class="service-provider-image full-background-image default-image clickable"
+                           style="background-image: url(/images/business_dark.png);"
+                           ng-href="{{generateLink(shop, 'shop')}}" ng-if="!shop.logo"></a>
+                        <div class="service-provider-details">
+                            <a ng-href="{{generateLink(shop, 'shop')}}" id="intro-service-provider">{{shop.name}}
+                                <img ng-if="shop.isVerifyBussinessId" src="/images/verified_badge.png"
+                                     class="small-badge"/>
+                                <span class="label label-primary" ng-if="global.isPlus(shop)">{{shop.shopType}}</span>
+                            </a>
+                            <div class="provider-location clickable" ng-click="loadServiceMap()"
+                                 id="intro-service-address" mixpanel-trigger="click"
+                                 mixpanel-event="VIEW" track-type="Service Address">
+                                <i class="fa fa-map-marker"></i>{{global.isPlus(shop) ? shop.address :
+                                shop.shortLocation}}
+                            </div>
+                            <div class="provider-plus-information" ng-if="global.isPlus(shop)">
+                                <div ng-if="socialLinks.phone">
+                                    <i class="fa fa-phone"></i>{{socialLinks.phone.link}}
+                                </div>
+                                <div ng-if="socialLinks.website" class="limit-width">
+                                    <a ng-href="{{socialLinks.website.link}}" target="_blank"
+                                       title="{{socialLinks.website.link}}">
+                                        <i class="fa fa-link"></i>{{socialLinks.website.link}}</a>
+                                </div>
+                            </div>
+                            <div class="provider-plus-information" ng-if="global.isPlus(shop)">
+                                <div ng-if="socialLinks.facebook">
+                                    <a ng-href="https://facebook.com/{{socialLinks.facebook.link}}" target="_blank">
+                                        <i class="fa fa-facebook-official"></i>{{socialLinks.facebook.link}}</a>
+                                </div>
+                                <div ng-if="socialLinks.twitter">
+                                    <a ng-href="https://twitter.com/{{socialLinks.twitter.link}}" target="_blank">
+                                        <i class="fa fa-twitter"></i>{{socialLinks.twitter.link}}</a>
+                                </div>
+                                <div ng-if="socialLinks.instagram">
+                                    <a ng-href="https://instagram.com/{{socialLinks.instagram.link}}" target="_blank">
+                                        <i class="fa fa-instagram"></i>{{socialLinks.instagram.link}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-description service-info-block">
+                    <h4 class="service-info-label">Description</h4>
+                    <p>{{service.description}}</p>
+                </div>
+
+                <div class="service-ratings service-info-block">
+                    <h4 class="service-info-label">{{service.ratingNo}} ratings</h4>
+                    <div class="star-rating-wrap">
+                        <uib-rating aria-labelledby="default-rating" class="uib-rating" max="5"
+                                    ng-model="service.ratingDetail.qualityValue" read-only="true">
+                        </uib-rating>
+                        <div class="rating-label">Service quality</div>
+                    </div>
+                    <div class="star-rating-wrap">
+                        <uib-rating aria-labelledby="default-rating" class="uib-rating" max="5"
+                                    ng-model="service.ratingDetail.moneyValue" read-only="true"></uib-rating>
+
+                        <div class="rating-label">Value for money</div>
+                    </div>
+                    <div class="star-rating-wrap">
+                        <uib-rating aria-labelledby="default-rating" class="uib-rating" max="5"
+                                    ng-model="service.ratingDetail.skillValue" read-only="true"></uib-rating>
+
+                        <div class="rating-label">Communication skills</div>
+                    </div>
+                </div>
+
+                <div class="service-review-wrap service-info-block">
+                    <h4 class="service-info-label">Reviews</h4>
+
+                    <div class="service-review" ng-repeat="review in listReviews">
+                        <a class="service-review-image full-background-image clickable"
+                           style="background-image: url({{review.userProfileImage}});"
+                           ng-href="/profile/{{review.userId}}" ng-if="review.userProfileImage"></a>
+                        <a class="service-review-image full-background-image clickable default-image"
+                           style="background-image: url('/images/person_placeholder_dark.png');"
+                           ng-href="/profile/{{review.userId}}" ng-if="!review.userProfileImage"></a>
+                        <div class="service-review-details">
+                            <a ng-href="/profile/{{review.userId}}">
+                                <h4 class="reviewer-name">{{review.userFullName}}</h4>
+                            </a>
+                            <div class="star-rating-wrap">
+                                <uib-rating aria-labelledby="default-rating" class="uib-rating" max="5"
+                                            ng-model="review.rating" read-only="true"></uib-rating>
+                                <div class="rating-label review-date">{{timeAgoCreation(review.createdDate)}}</div>
+                            </div>
+
+                            <div class="review-content">
+                                {{review.message}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar navbar-fixed-bottom service-action-bar">
+            <div class="container">
+                <div class="service-action-block">
+                    <div class="service-action-favorite" ng-if="isOwner===false" id="intro-service-favorite">
+                        <h5>FAVORITE</h5>
+                        <div><i class="fa fa-heart" ng-click="toggleFavoriteService(service.id);"
+                                ng-class="{'favorited': isFavoriteService(service.id)}"></i></div>
+                    </div>
+                    <div class="service-action-share" id="intro-service-share">
+                        <h5>SHARE</h5>
+                        <div class="service-social-container">
+                            <a target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u={{currentUrl}}"
+                               ng-click="trackShare('Facebook')">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a target="_blank"
+                               ng-href="https://twitter.com/home?status=Take a look at this service on Goly and start booking your event services today {{currentUrl}}"
+                               ng-click="trackShare('Twitter')">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a target="_blank" ng-href="https://pinterest.com/pin/create/button/?url={{currentUrl}}"
+                               ng-click="trackShare('Pinterest')">
+                                <i class="fa fa-pinterest"></i>
+                            </a>
+                            <a target="_blank" class="mobile-device-only"
+                               ng-href="whatsapp://send?text=Take a look at this service on Goly and start booking your event services today {{currentUrl}}"
+                               ng-click="trackShare('Whatsapp')">
+                                <i class="fa fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-action-block flex-right" ng-if="isOwner">
+                    <button ng-click="openEditMyServiceModel()" class="service-order-button" type="button"
+                            id="intro-service-edit">EDIT
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="moreFromSeller-block" ng-if="moreFromSeller.length > 0">
+            <div class="moreFromSeller-block-group">
+                <div class="moreFromSeller-block-group-wrap">
+                    <div class="moreFromSeller-block-bar-wrap">
+                        <div class="moreFromSeller-block-bar-text">
+                            More from {{shop.name}}
+                        </div>
+                        <div class="moreFromSeller-block-bar-linkToShop">
+                            <a ng-href="{{generateLink(shop, 'shop')}}">View all</a>
+                        </div>
+                    </div>
+                    <div class="moreFromSeller-block-fragment-wrap">
+                        <service-fragment ng-repeat="service in moreFromSeller"
+                                          service="service"
+                                          buttons="serviceButtons"
+                                          ng-click="openServicePage(service.id)">
+                        </service-fragment>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div aria-labelledby="myModalLabel" class="modal fade" id="openMapModal"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div aria-label="Close" class="close" data-dismiss="modal"
+                     type="button">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+                <h4 class="modal-title" id="myModalLabel">{{global.isPlus(shop) ? shop.address :
+                    shop.shortLocation}}</h4>
+            </div>
+            <div class="modal-body map-modal">
+                <span ng-if="!service.location">Cannot locate this shop on the map</span>
+                <div id="service-map"></div>
+            </div>
+        </div>
+    </div>
+</div>

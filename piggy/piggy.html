@@ -1,0 +1,26 @@
+<header main-nav></header>
+<div class="main-container">
+    <div class="piggy-chart-wrap">
+        <uib-tabset>
+            <uib-tab>
+                <uib-tab-heading>
+                    Line chart
+                </uib-tab-heading>
+                <div id="lineChartTab">
+                    <canvas chart-click="onClick" chart-data="data" chart-labels="labels" chart-legend="true" chart-series="series" class="chart chart-line" id="line"></canvas>
+                </div>
+            </uib-tab>
+            <uib-tab>
+                <uib-tab-heading>
+                    Pie chart
+                </uib-tab-heading>
+                <div id="pieChartTab">
+                    <canvas chart-data="sales" chart-labels="services" class="chart chart-pie" id="pie"></canvas>
+                </div>
+            </uib-tab>
+            <input class="form-control date-picker pull-right" date-range-picker
+              options="{eventHandlers: {'apply.daterangepicker': onDatePickerApply}}"
+             name="daterange" ng-model="datePicker.date" type="text"/>
+        </uib-tabset>
+    </div>
+</div>

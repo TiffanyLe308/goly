@@ -1,0 +1,432 @@
+// Variables
+$gridPadding: 50px;
+$serviceInfoGutter: 20px;
+$bottomBarHeight: 80px;
+
+.service-page {
+    background: $colorWhite;
+}
+
+.service {
+    flex-direction: row;
+    display: flex;
+    padding-top: $gridPadding;
+    flex-wrap: wrap;
+
+    .moreFromSeller-block {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        margin: 0 auto;
+        flex-shrink: 0;
+
+        .moreFromSeller-block-group {
+            margin-bottom: 100px;
+
+            .moreFromSeller-block-group-wrap {
+                display: flex;
+                flex-wrap: wrap;
+
+                .moreFromSeller-block-bar-wrap {
+                    height: 45px;
+                    width: 100%;
+                    background: #E7F3FC;
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    .moreFromSeller-block-bar-text {
+                        display: flex;
+                        align-self: center;
+                        margin-left: 20px;
+                    }
+
+                    .moreFromSeller-block-bar-linkToShop {
+                        display: flex;
+                        padding-right: 20px;
+                        margin-left: auto;
+                        align-items: center;
+                        @include mobile {
+                            display: none;
+                        }
+                    }
+                }
+
+                .moreFromSeller-block-fragment-wrap {
+                    width: 100%;
+                    display: flex;
+                    service-fragment {
+                        width: 25%;
+                    }
+
+                    @include mobile {
+                        display: flex;
+                        box-sizing: border-box;
+                        overflow: auto;
+                        overflow-x: scroll;
+                        overflow-y: hidden;
+                        padding: 0;
+                        position: relative;
+                        width: 100%;
+
+                        service-fragment {
+                            width: 210px;
+                            flex-shrink: 0;
+                            margin: 0 10px 0 0;
+
+                            .service-image {
+                                height: 160px;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .service-gallery-section {
+        flex-grow: 1;
+        width: 50%;
+        padding-right: $gridPadding / 2;
+        padding-bottom: $bottomBarHeight;
+        @include mobile {
+            display: none;
+        }
+
+        .service-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+
+            .service-gallery-image {
+                margin: 0 5px 5px 0;
+                width: calc(50% - 5px);
+                min-height: 175px;
+                @include rounded;
+
+                &:first-child {
+                    flex-grow: 1;
+                }
+            }
+        }
+    }
+
+    .service-info-section {
+        flex-grow: 1;
+        width: 50%;
+        padding-left: $gridPadding / 2;
+        padding-bottom: $bottomBarHeight;
+        @include mobile {
+            margin: 0;
+            padding-left: 0;
+        }
+
+        .service-info-block {
+            margin-top: $serviceInfoGutter;
+            font-size: $fontNormal;
+
+            p {
+                font-size: $fontNormal;
+                font-weight: 300;
+            }
+        }
+
+        .service-info-wrap {
+            .underline-style-section-header {
+                margin: 0;
+            }
+
+            .mobile-gallery {
+                display: none;
+                @include mobile {
+                    display: flex;
+                    height: 200px;
+                }
+
+                .item {
+                    .img {
+                        display: block;
+                        width: 100%;
+                        height: 200px;
+                        @extend .full-background-image;
+                    }
+                }
+            }
+
+            .service-price {
+                display: flex;
+                font-size: $fontBase;
+
+                .price-before {
+                    color: $colorRed;
+                    margin-left: 10px;
+                    text-decoration: line-through;
+                }
+
+                .price-after {
+                    margin-left: 10px;
+                }
+            }
+
+            .service-ratings {
+                .star-rating-wrap {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+
+                    .rating-label {
+                        margin-left: 10px;
+                    }
+                }
+            }
+
+            .service-review-wrap {
+                .service-review {
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 10px;
+
+                    .service-review-details {
+                        display: flex;
+                        flex-direction: column;
+
+                        .reviewer-name {
+                            font-size: $fontNormal;
+                        }
+                    }
+
+                    .service-review-image {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        background: $colorMain;
+                        margin-right: 10px;
+                    }
+
+                    .star-rating-wrap {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        .review-date {
+                            margin-left: 10px;
+                            color: $colorLabel;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .service-provider-wrap {
+
+            .service-provider {
+                display: flex;
+
+                .service-provider-image {
+                    flex-shrink: 0;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-right: 10px;
+                }
+
+                #intro-service-provider {
+                    font-weight: 300;
+                    font-size: 16px;
+                }
+
+                .provider-location {
+                    margin-top: 5px;
+                }
+
+                .provider-plus-information {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
+                    div {
+                        margin-right: 20px;
+
+                        &.limit-width {
+                            max-width: 200px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                }
+
+                .fa {
+                    width: 14px;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+    }
+
+    .service-action-bar {
+        height: $bottomBarHeight;;
+        background-color: $colorBlueLight;
+        border-top: solid 1px $colorLightGrey;
+
+        .container {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            height: 100%;
+
+            .service-action-block {
+                display: flex;
+                flex-direction: row;
+
+                .service-action-favorite {
+                    margin-right: 20px;
+                }
+
+                &.flex-right {
+                    margin-left: auto;
+                }
+
+                .button {
+                    padding: 0 50px;
+                    cursor: pointer;
+
+                    @include mobile {
+                        padding: 0 10px;
+                    }
+
+                    &.service-message-button {
+                        color: $colorMain;
+                        border: none;
+                        background-color: transparent;
+                    }
+
+                    &.service-order-button {
+                        background-color: $colorBlueSignUp;
+                    }
+                }
+
+                .service-social-container {
+                    display: flex;
+                }
+
+                .fa {
+                    color: $colorBlue;
+                    margin: 10px 30px 0 0;
+                    cursor: pointer;
+                    font-size: 20px;
+
+                    &.favorited {
+                        color: $colorOrange;
+                    }
+                }
+            }
+        }
+    }
+
+    // General classes
+    h4.service-info-label {
+        font-size: $fontSmall;
+        font-weight: 300;
+        margin-bottom: 10px;
+        color: $colorLabel;
+    }
+}
+
+#openMapModal {
+    #service-map {
+        height: 450px;
+    }
+}
+
+#service-image-slider {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .carousel-indicators {
+        display: flex;
+        order: 2;
+        align-items: center;
+        width: 100%;
+        position: relative;;
+        bottom: 0;
+        left: 0;
+        margin-left: 0;
+        text-align: left;
+        margin-bottom: 0;
+        li {
+            @extend .full-background-image;
+            width: 60px;
+            height: 60px;
+            border-radius: $radiusDefault;
+            transition: width 0.7s ease-out;
+        }
+        .active {
+            border: 3px solid $colorMain;
+            width: 90px;
+        }
+    }
+    .carousel-inner {
+        .item {
+            @extend .full-background-image;
+            height: 400px;
+        }
+    }
+    .carousel-control {
+        background-image: none;
+        margin-bottom: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 28px;
+        }
+    }
+}
+
+.add-service-img-wrap {
+    margin-bottom: 20px;
+    overflow: auto;
+    .add-service-img {
+        width: 103px;
+        height: 100px;
+        float: left;
+        position: relative;
+        margin: 5px;
+        .add-service-img-thumb {
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat !important;
+            background-position: 50% 50% !important;
+            background-size: cover;
+            border-radius: 4px;
+            overflow: hidden;
+            .add-service-img-remove-btn {
+                background: red;
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                text-align: center;
+                font-weight: 900;
+                color: #ffffff;
+                font-size: 14px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    label {
+        width: 100%;
+    }
+
+    .upgrade-label {
+        cursor: pointer;
+        color: $colorBlueDarker;
+        text-decoration: underline;
+    }
+}
