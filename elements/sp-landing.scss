@@ -1,0 +1,634 @@
+.provider-landing {
+    width: 100%;
+    height: 100%;
+    flex-grow: 1;
+    display: block;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    .sp-banner-section {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        @extend .full-background-image;
+        background-image: url(/images/sp-landing/hero.jpg);
+        text-align: center;
+        @include mobile {
+            min-height: 90%;
+        }
+        @include browser(' ie ') {
+            height: 80vh;
+        }
+        h1 {
+            font-size: 40px;
+            max-width: 80%;
+        }
+        h3 {
+            font-size: 25px;
+            font-weight: 100;
+            max-width: 80%;
+        }
+        button {
+            border: none;
+            height: 50px;
+            cursor: pointer;
+            margin-top: 100px;
+            @include mobile {
+                margin-top: 20px;
+            }
+        }
+    }
+    .vp-section {
+        background: $colorBlueLight;
+        padding: 100px;
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        @include tablet {
+            padding: 100px 12px;
+        }
+        @include mobile {
+            padding: 100px 12px 50px;
+            flex-direction: column;
+        }
+        h3 {
+            min-height: 45px;
+        }
+        .sp-value-prop {
+            width: 30%;
+            flex-shrink: 0;
+            padding: 0 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            @include tablet {
+                width: 33%;
+            }
+            @include mobile {
+                width: 100%;
+                margin-bottom: 50px;
+            }
+            &:hover {
+                div {
+                    width: 70px;
+                    background: $colorBlue;
+                }
+            }
+            div {
+                width: 50px;
+                height: 4px;
+                border-radius: 2px;
+                background: $colorMain;
+                margin: 15px 0 30px;
+                transition: all 0.3s ease-out;
+                @include mobile {
+                    margin: 7px 0 15px;
+                }
+            }
+            p {
+                font-weight: 100;
+                max-width: 100%;
+            }
+        }
+    }
+    .sp-steps-section {
+        padding: 150px 0 0;
+        .sp-step-wrap {
+            display: flex;
+            // padding: 40px 0px;
+            position: relative;
+            .sp-step-image-side {
+                width: 50%;
+                flex-shrink: 0;
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                @include tablet {
+                    width: 10%;
+                }
+                @include mobile {
+                    width: 10%;
+                }
+                img {
+                    width: 85%;
+                    @include tablet {
+                        display: none;
+                    }
+                    @include mobile {
+                        display: none;
+                    }
+                }
+            }
+            .sp-step-circle {
+                position: absolute;
+                top: 0;
+                left: 50%;
+                margin-left: -15px;
+                width: 30px;
+                height: 30px;
+                background: #ffffff;
+                border: 1px solid $colorMain;
+                border-radius: 50%;
+                z-index: 1;
+                @include tablet {
+                    left: 10%;
+                }
+                @include mobile {
+                    left: 10%;
+                }
+            }
+            .sp-step-text-side {
+                width: 50%;
+                flex-shrink: 0;
+                border-left: 1px solid $colorMain;
+                padding: 0 40px 200px;
+                position: relative;
+                @include tablet {
+                    width: 90%;
+                    padding: 0 40px 100px;
+                }
+                @include mobile {
+                    width: 90%;
+                    padding: 0 0 100px 30px;
+                }
+                h1 {
+                    font-size: 35px;
+                    font-weight: 300;
+                }
+                p {
+                    margin-bottom: 30px;
+                    font-weight: 100;
+                }
+                .feature-image-mobile {
+                    display: none;
+                    @include tablet {
+                        display: block;
+                        width: 70%;
+                        margin: 0 auto 20px;
+                    }
+                    @include mobile {
+                        display: block;
+                        width: 70%;
+                        margin: 0 auto 20px;
+                    }
+                }
+                .sp-step-features-wrap {
+                    display: flex;
+                    flex-wrap: wrap;
+                    .sp-step-feature {
+                        width: 48%;
+                        flex-shrink: 0;
+                        padding: 15px;
+                        display: flex;
+                        @include tablet {
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+                        }
+                        @include mobile {
+                            flex-direction: column;
+                            align-items: center;
+                            text-align: center;
+                        }
+                        .sp-feature-image {
+                            background: $colorMain;
+                            width: 60px;
+                            height: 60px;
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            flex-shrink: 0;
+                            margin-right: 10px;
+                            @include tablet {
+                                margin-right: 0;
+                                margin-bottom: 10px;
+                            }
+                            @include mobile {
+                                margin-right: 0;
+                                margin-bottom: 10px;
+                            }
+                            img {
+                                width: 32px;
+                            }
+                        }
+                        .sp-feature-text {
+                            @include tablet {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            }
+                            @include mobile {
+                                display: flex;
+                                flex-direction: column;
+                                align-items: center;
+                            }
+                            h3 {
+                                margin-bottom: 7px;
+                                font-weight: 100;
+                            }
+                            p {
+                                font-size: 14px;
+                            }
+                            button {
+                                margin-top: -30px;
+                                padding: 0;
+                                background: transparent;
+                                border: none;
+                                color: $colorBlue;
+                                cursor: pointer;
+                                transition: all 0.3s ease-out;
+                                &:hover {
+                                    background: $colorBlue;
+                                    color: #ffffff;
+                                    padding: 0 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .sp-step-wrap-1 {
+
+        }
+        .sp-step-wrap-2 {
+            .sp-step-image-side {
+                img {
+                    width: 85%;
+                    margin-top: -70px;
+                }
+            }
+        }
+        .sp-step-wrap-3 {
+
+        }
+    }
+    .sp-badge-section {
+        width: 100%;
+        background: $colorBlue;
+        position: relative;
+        @include tablet {
+            outline: 50px solid $colorBlue;
+        }
+        @include mobile {
+            outline: 70px solid $colorBlue;
+        }
+        // height: 500px;
+        .badge-header-top-text {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            @include tablet {
+                top: 0;
+                left: 12px;
+            }
+            @include mobile {
+                top: -40px;
+                left: 12px;
+            }
+            h1 {
+                font-size: 35px;
+                color: #ffffff;
+            }
+            p {
+                color: #ffffff;
+            }
+        }
+        .badge-line {
+            width: 100%;
+        }
+        .sp-badge-wrap {
+            padding: 5px 10px;
+            height: 40px;
+            background: #197ca6;
+            position: absolute;
+            width: 12%;
+            border-radius: $radiusDefault;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-wrap: wrap;
+            transition: all 0.3s ease-out;
+            @include tablet {
+                width: 17%;
+            }
+            &:hover {
+                height: 170px;
+                transform: translateY(3%);
+                background: #ffffff;
+                padding: 10px 10px;
+                box-shadow: $shadowSmall;
+                h3 {
+                    color: $colorMain;
+                }
+                p {
+                    display: block;
+                    opacity: 1;
+                    max-height: 150px;
+                    height: 150px;
+                }
+                .badge-arrow {
+                    background: #ffffff;
+                }
+            }
+            img {
+                width: 22px;
+            }
+            h3 {
+                font-size: 1em;
+                color: #ffffff;
+                margin: 6px 0 0 5px;
+                @include mobile {
+                    display: none;
+                }
+            }
+            p {
+                width: 100%;
+                margin: 15px 0 0;
+                // display: none;
+                font-size: 12px;
+                opacity: 0;
+                transition: all 0.2s ease-out;
+                height: 0;
+                text-align: center;
+                max-height: 0;
+                overflow: hidden;
+                b {
+                    display: block;
+                    margin-top: 5px;
+                }
+            }
+            .badge-arrow {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background: #197ca6;
+                transform: rotate(45deg);
+                left: 50%;
+                margin-left: -5px;
+                bottom: -5px;
+                transition: all 0.3s ease-out;
+            }
+        }
+        .sp-badge-silver {
+            // top: 55%;
+            bottom: 35%;
+            left: 8.8%;
+            @include tablet {
+                left: 6.2%;
+            }
+        }
+        .sp-badge-gold {
+            // top: 53.8%;
+            bottom: 35.8%;
+            left: 32.3%;
+            @include tablet {
+                left: 29.7%;
+            }
+        }
+        .sp-badge-platinum {
+            // top: 28.6%;
+            bottom: 60.3%;
+            left: 55.3%;
+            @include tablet {
+                left: 52.9%;
+            }
+        }
+        .sp-badge-diamond {
+            // top: 18%;
+            bottom: 71%;
+            left: 79.6%;
+            @include tablet {
+                left: 77.1%;
+            }
+        }
+        .connecting-line {
+            width: 30%;
+            height: 4px;
+            background: red;
+            position: absolute;
+            margin: 50px 0 0 70px;
+        }
+        .connecting-line-1 {
+            transform: rotate(-11deg);
+            top: 235px;
+            left: 9%;
+        }
+        .connecting-line-2 {
+            transform: rotate(-6deg);
+            top: 200px;
+            left: 39%;
+        }
+        .sp-landing-badge-footer {
+            position: absolute;
+            right: 50px;
+            bottom: 50px;
+            font-size: 12px;
+            max-width: 40%;
+            text-align: right;
+            @include tablet {
+                bottom: 0;
+                right: 12px;
+            }
+            @include mobile {
+                bottom: -50px;
+                right: 12px;
+                left: 12px;
+                text-align: center;
+                max-width: 100%;
+            }
+        }
+    }
+    #sp-account-type {
+        .sp-account-table {
+            max-width: $desktopContentWidth;
+            margin: 10px auto 40px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+
+            .sp-account-column {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                padding: 10px;
+            }
+        }
+    }
+
+    .sub-link {
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    .sp-blog-section {
+        padding: 100px;
+        background: $colorCream;
+        @include tablet {
+            padding: 100px 12px;
+        }
+        @include mobile {
+            padding: 100px 12px;
+        }
+        h1 {
+            font-size: 35px;
+            width: 80%;
+            text-align: center;
+            margin: 0 auto 50px;
+        }
+        .latest-blogs-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            .blog-excerpt {
+                position: relative;
+                width: 33.33%;
+                height: 200px;
+                // @extend .full-background-image;
+                transition: all 0.2s ease-out;
+                background-size: cover;
+                @include tablet {
+                    height: 150px;
+                }
+                @include mobile {
+                    width: 50%;
+                    height: 150px;
+                }
+                &:hover {
+                    background-size: 105%;
+                    background-position: 60% 50%;
+                    .read-more-button {
+                        opacity: 1;
+                    }
+                }
+                div {
+                    background: rgba(0, 0, 0, 0.7);
+                    padding: 15px;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    h3 {
+                        color: #ffffff;
+                        z-index: 1;
+                        font-weight: 100;
+                    }
+                    .read-more-button {
+                        color: $colorBlue;
+                        font-size: 16px;
+                        opacity: 0;
+                        transition: all 0.2s ease-out;
+                        align-self: flex-end;
+                        @include tablet {
+                            display: none;
+                        }
+                        @include mobile {
+                            display: none;
+                        }
+                    }
+                    p {
+                        font-weight: 100;
+                        margin: 20px 0;
+                        color: #ffffff;
+                        z-index: 1;
+                    }
+                }
+            }
+            .blog-excerpt-more {
+                background: $colorBlue;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+    .sp-landing-testi-section {
+        padding: 100px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include tablet {
+            padding: 100px 12px;
+        }
+        @include mobile {
+            padding: 100px 12px;
+        }
+        .sp-landing-testi-text {
+            width: 60%;
+            text-align: center;
+            min-height: 100px;
+            margin-bottom: 20px;
+            @include mobile {
+                width: 85%;
+            }
+            p {
+                position: relative;
+                span {
+                    font-size: 60px;
+                    font-family: sans-serif;
+                    font-weight: 900;
+                    color: $colorCream;
+                    position: absolute;
+                }
+                .first-quote-mark {
+                    top: -30px;
+                    left: -30px;
+                }
+                .second-quote-mark {
+                    right: -30px;
+                    bottom: -60px;
+                }
+            }
+        }
+        .sp-landing-testi-users-wrap {
+            display: flex;
+            .testi-user {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                opacity: 0.3;
+                margin: 0 10px;
+                cursor: pointer;
+                .testi-user-img {
+                    @extend .full-background-image;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    background: $colorGrey;
+                }
+                .testi-user-info {
+                    h3 {
+                        font-size: 16px;
+                        font-weight: 900;
+                        margin: 10px 0 0;
+                    }
+                    p {
+                        font-size: 14px;
+                        color: $colorGrey;
+                    }
+                }
+            }
+            .selected-testi {
+                opacity: 1;
+                .testi-user-img {
+                    width: 70px;
+                    height: 70px;
+                    border: 2px solid $colorBlue;
+                    margin-top: -2px;
+                }
+                .testi-user-info {
+                    margin-top: -2px;
+                }
+            }
+        }
+        .get-started-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+    }
+}

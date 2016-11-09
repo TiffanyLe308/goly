@@ -1,0 +1,403 @@
+/* ----------------------------------- Service Fragment ------------------------------- */
+service-fragment {
+    width: 33.3%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin: 0;
+    padding: 15px;
+    transition: background 0.3s ease-out;
+    @include mobile {
+        width: 100%;
+        margin: 20px 0 0;
+        padding: 0;
+    }
+    @include tablet {
+        width: 50%;
+    }
+
+    &:hover {
+        background: $colorCream;
+
+        .button-container {
+            opacity: 1;
+        }
+    }
+
+    .service-image {
+        @extend .full-background-image;
+        position: relative;
+        width: 100%;
+        height: 250px;
+    }
+
+    .button-container {
+        background: rgba(0, 0, 0, 0.7);
+        transition: all 0.3s ease-in-out;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 45px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        @include mobile {
+            opacity: 1;
+        }
+        span {
+            font-size: 20px;
+            color: white;
+        }
+        .service-button {
+            flex-grow: 1;
+            text-align: center;
+            color: white;
+            &:hover {
+                color: gray;
+            }
+        }
+    }
+    .service-info-wrap {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .service-title {
+            font-size: $fontBase;
+            font-weight: 400;
+            margin: 10px 0 5px;
+            text-align: left;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .service-info {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+
+            .service-price {
+                text-align: left;
+            }
+
+            .uib-rating {
+                font-size: 5px !important;
+                .glyphicon {
+                    font-size: 16px !important;
+                }
+            }
+        }
+    }
+}
+
+/* ----------------------------------- Star Rating ------------------------------- */
+
+.star-rating {
+    width: auto;
+    text-align: left;
+    position: relative;
+    font-size: 1.4em;
+    height: 1.4em;
+    white-space: nowrap;
+
+    .star-back {
+        top: 0;
+        z-index: 1;
+        color: $colorStarBack;
+    }
+    .star-top {
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        color: $colorStarTop;
+        font-weight: bold;
+    }
+}
+
+/* ------------------------------ goly-secondary-menu ---------------------------- */
+.goly-secondary-menu {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    border-bottom: 1px solid $colorLightGrey;
+    display: flex;
+    align-items: flex-end;
+    div {
+        display: inline-block;
+        margin-right: 50px;
+        cursor: pointer;
+        line-height: 35px;
+        &.goly-secondary-menu-active {
+            border-bottom: 2px solid $colorOrange;
+            margin-bottom: -1px;
+        }
+    }
+
+    .goly-secondary-menu-button-wrap {
+        display: flex;
+        align-items: center;
+        margin: 0;
+        color: $colorBlueDarker;
+        img {
+            width: 17px;
+            height: 17px;
+            margin-right: 5px;
+        }
+    }
+}
+
+/* ------------------------------ goly-underlined-header ---------------------------- */
+.underline-style-section-header {
+    margin: 40px 0;
+    h3 {
+        font-size: 25px;
+        font-weight: 300;
+    }
+    div {
+        width: 50px;
+        height: 3px;
+        background: $colorGreyBorder;
+        border-radius: 3px;
+        margin-top: 5px;
+    }
+}
+
+/* ------------------------------ shop-excerpt ---------------------------- */
+
+.shop-excerts-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* ------------------------------ badges ---------------------------- */
+.small-badge {
+    max-height: 17px;
+    max-width: 17px;
+}
+
+/* ------------------------------- shop fragment--------------------- */
+shop-fragment {
+    width: 33.33%;
+    height: 245px;
+    border-bottom: 1px solid $colorLightGrey;
+    position: relative;
+    margin-top: -1px;
+    margin-left: -1px;
+    transition: background 0.3s ease-out;
+    &:nth-child(3n+2) {
+        border-left: 1px solid $colorLightGrey;
+        border-right: 1px solid $colorLightGrey;
+    }
+    @include mobile {
+        border-left: none !important;
+        border-right: none !important;
+        width: 100%;
+    }
+    @include tablet {
+        width: 50%;
+        &:nth-child(2n) {
+            border-left: 1px solid $colorLightGrey !important;
+        }
+        &:nth-child(3n+2) {
+            border-left: none;
+            border-right: none;
+        }
+    }
+    &:hover {
+        background: $colorCream;
+    }
+    &.compact-fragment {
+        width: 100%;
+        height: 80px;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid $colorLightGrey;
+
+        .shop-fragment-wrapper {
+            flex-direction: row;
+            justify-content: flex-start;
+            padding: 10px 5px;
+        }
+
+        .img-wrap .service-provider-image {
+            width: 60px;
+            height: 60px;
+        }
+
+        .info {
+            text-align: left;
+            margin: 0 10px;
+            flex-grow: 1;
+            overflow: hidden;
+
+            .name {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                max-width: 100%;
+                display: block;
+            }
+        }
+    }
+
+    .shop-fragment-wrapper {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .favorite-button {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+
+        .fa-heart-o {
+            color: $colorStarBack;
+        }
+
+        .fa-heart {
+            color: $colorStarTop;
+        }
+    }
+    .img-wrap {
+        flex-direction: column;
+        justify-content: center;
+        display: flex;
+        .service-provider-image {
+            width: 75px;
+            height: 75px;
+            border: 1px solid $colorLightGrey;
+            border-radius: 50px;
+        }
+    }
+    .info {
+        max-width: 100%;
+        margin-top: 20px;
+        text-align: center;
+        .name {
+            font-size: $fontMedium;
+            font-weight: 400;
+        }
+        .location {
+            color: $colorGrey;
+        }
+    }
+    .record {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        .child {
+            font-size: $fontNormal;
+            width: 50%;
+            text-align: center;
+        }
+        .separator {
+            height: 20px;
+            width: 1px;
+            border-left: 1px solid $colorLightGrey;
+        }
+        .service {
+        }
+    }
+}
+
+/* ------------------------------- Pagination --------------------- */
+
+.pagination-wrap {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .pagination {
+        li {
+            &:last-child {
+                a {
+                    border-top-right-radius: 18px;
+                    border-bottom-right-radius: 18px;
+                }
+            }
+            &:first-child {
+                a {
+                    border-top-left-radius: 18px;
+                    border-bottom-left-radius: 18px;
+                }
+            }
+            a {
+                color: $colorBlueDarker;
+            }
+        }
+        .active {
+            a {
+                background: $colorBlue;
+                border-color: $colorBlue;
+                color: #ffffff;
+            }
+        }
+    }
+}
+
+.load-more-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    button {
+        border: 1px solid $colorBlue;
+        background: transparent;
+        color: $colorBlue;
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+        &:hover {
+            background: $colorBlue;
+            color: #ffffff;
+        }
+    }
+}
+
+/* ------------------------------- Goly Banner --------------------- */
+.goly-banner {
+    width: 100%;
+    margin: 20px auto;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    &.banner-green {
+        background-color: $colorBannerGreen;
+        color: $colorWhite;
+    }
+
+    &.banner-width {
+        width: $desktopContentWidth;
+        @include tablet {
+            width: 100%;
+            padding: 0 15px;
+        }
+        @include mobile {
+            width: 100%;
+            padding: 0 15px;
+        }
+    }
+}
+
+/* ------------------------------- Profile Image --------------------- */
+.profile-image {
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid $colorCream;
+    @extend .full-background-image;
+}

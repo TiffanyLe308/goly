@@ -1,0 +1,62 @@
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4 class="clickable visible-xs-block" ng-click="selectCountry()">{{countryName}}
+                    <img ng-src="/images/flags/{{country}}.png" height="29px"></h4>
+                <h4>Company</h4>
+
+                <div class="links">
+                    <a href="/about-us">About us</a>
+                    <a href="/careers">Careers</a>
+                    <a href="//blog.goly.co" mixpanel-trigger="click" mixpanel-event="VISIT BLOG"
+                       track-from="Blog">Blog</a>
+                    <a href="//blog.goly.co/category/news">News</a>
+                    <a href="https://s3.amazonaws.com/goly2.0-content/documents/Press.zip" target="_blank">Press</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h4>Discover</h4>
+
+                <div class="links">
+                    <a href="/sell-services">Sell Services</a>
+                    <a href="/plus">Goly Plus</a>
+                    <a href="/trust-and-safety">Trust & Safety</a>
+                    <a href="//blog.goly.co/category/service-knowledge-vault/"
+                       mixpanel-trigger="click" mixpanel-event="VISIT BLOG" track-from="Tips for growth">Tips for
+                        growth</a>
+                    <a href="//goly.freshdesk.com">Help</a>
+                    <a href="/terms">Terms of Services</a>
+                    <a href="/privacy">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+                <h4 class="clickable hidden-xs" ng-click="selectCountry()">{{countryName}}
+                    <img ng-src="/images/flags/{{country}}.png" height="29px"></h4>
+
+                <h4>Join our growing community on</h4>
+
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/pages/Goly/1433093220311976"><i class="fa fa-facebook"></i></a>
+                    <a href="https://instagram.com/golyhq"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/GolyHQ"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/4287396"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://www.google.com/+GolyHQ"><i class="fa fa-google-plus"></i></a>
+                </div>
+
+                <h4>Need help? Contact us</h4>
+
+                <div class="footer-email-section">
+                    Email: <a href="mailto:support@goly.co">support(at)goly.co</a>
+                </div>
+            </div>
+        </div>
+        <div class="row payment-and-copyright-wrap">
+            <img class="payment-options-footer" src="/images/payment_options.png" alt="" ng-if="country == 'NG'"/>
+            <div class="col-sm-12 copyright">
+                <p>Copyright &copy; 2016 - Goly Oy</p>
+            </div>
+        </div>
+    </div>
+</div>

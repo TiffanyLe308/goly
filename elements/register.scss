@@ -1,0 +1,507 @@
+.sign-up {
+    @include background-image(url("/images/layout/registration_background.jpg"));
+    background-color: $colorMain;
+    @extend .full-background-image;
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+
+    .sign-up-container {
+
+        margin: 70px auto;
+        position: relative;
+        padding: 10px;
+        width: 50%;
+        min-width: 450px;
+        max-width: 490px;
+        @include mobile {
+            width: 100%;
+            min-width: 0;
+        }
+
+
+        .header {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            @include mobile {
+                flex-direction: column;
+            }
+
+            .steps {
+                display: flex;
+                flex-direction: row;
+                position: absolute;
+                right: 5px;
+                @include mobile {
+                    position: relative;
+                    text-align: center;
+                }
+
+                .connector {
+                    height: 1px;
+                    width: 20px;
+                    background-color: $colorWhite;
+                    display: inline-block;
+                    position: relative;
+                    bottom: 21px;
+                    left: 17px;
+
+                    &.completed {
+                        background-color: $colorBlueSignUp;
+                    }
+                }
+
+                .circle {
+
+                    @include border-top-radius(50%);
+                    @include border-right-radius(50%);
+                    @include border-bottom-radius(50%);
+                    @include border-left-radius(50%);
+                    width: 18px;
+                    height: 18px;
+                    margin: 10px 10px;
+                    display: inline-block;
+                    border: 1px solid $colorWhite;
+                    color: $colorWhite;
+                    font-size: $fontSmall;
+                    font-weight: 400;
+                    text-align: center;
+
+                    &.last .connector {
+                        visibility: hidden;
+                    }
+
+                    &.active {
+                        background-color: $colorWhite;
+                        color: $colorMain;
+                    }
+
+                    &.completed {
+                        background-color: $colorBlueSignUp;
+                        border: 1px solid $colorBlueSignUp;
+                    }
+
+                }
+            }
+
+            .logo {
+                margin-right: auto;
+                cursor: pointer;
+                @include mobile {
+                    margin-right: 0;
+                }
+
+                img {
+                    width: 125px;
+                }
+            }
+
+            .auth-switch {
+                font-size: $fontBase;
+                font-weight: 200;
+                margin-left: auto;
+                text-transform: uppercase;
+                @include mobile {
+                    margin-top: 20px;
+                    margin-left: 0;
+                }
+
+                .separator {
+                    color: $colorGrey;
+                    padding: 0 10px;
+                }
+
+                a {
+                    color: $colorGrey;
+                    padding: 3px;
+
+                    &.active {
+                        color: $colorWhite;
+                        border-bottom: 2px solid $colorWhite;
+                        pointer-events: none;
+                    }
+                }
+
+            }
+
+        }
+
+        .form-container {
+            @include custom-border-radius($radiusDefault, $radiusDefault, $radiusDefault, $radiusDefault);
+            background-color: $colorWhite;
+            margin-top: 50px;
+            padding: 50px;
+            @include mobile {
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .sign-up-button {
+                display: block;
+                width: 100%;
+                height: 45px;
+                background-color: $colorBlueSignUp;
+                color: $colorWhite;
+
+            }
+
+            .dropdown-toggle {
+                background-color: $colorCream;
+                width: 30%;
+                border-right-color: transparent;
+            }
+
+            .input-group {
+
+                display: block;
+
+                input {
+                    width: 70%;
+                    float: right;
+                }
+            }
+
+            .input-group-btn {
+
+                display: inline;
+
+                .caret {
+                    margin-left: 5px;
+                }
+            }
+
+            .separation-line {
+                height: 1px;
+                background-color: $colorCreamDark;
+                margin: 20px 0;
+                text-align: center;
+
+                .text {
+                    top: -8.55px;
+                    position: relative;
+                    padding: 0 15px;
+                    background-color: white;
+                    line-height: 1px;
+                    color: $colorCream
+                }
+            }
+
+            .description {
+                font-size: $fontNormal;
+                margin-bottom: 20px;
+
+                h2 {
+                    font-weight: 400;
+                    margin-bottom: 30px;
+                }
+
+                .phone-number {
+                    font-weight: 500;
+                }
+
+                .description-symbol {
+                    width: 50px;
+                    height: auto;
+                    margin-right: 10px;
+                }
+            }
+
+            .user-type-button {
+                @include custom-border-radius($radiusDefault, $radiusDefault, $radiusDefault, $radiusDefault);
+                align-items: center;
+                display: flex;
+                height: 40px;
+                margin-top: 10px;
+                padding: 25px;
+                background-color: $colorCream;
+                cursor: pointer;
+                position: relative;
+
+                &:after {
+                    @include background-image(url("/images/next.png"));
+                    content: "";
+                    background-repeat: no-repeat;
+                    width: 15px;
+                    height: 15px;
+                    background-size: contain;
+                    position: absolute;
+                    right: 25px;
+                    top: 17.5px;
+                }
+            }
+
+            .shop-type-container {
+                display: flex;
+                margin-bottom: 25px;
+
+                .individual-shop,
+                .company-shop {
+
+                    border: 1px solid $colorLightGrey;
+                    display: inline-block;
+                    width: 184px;
+                    height: 130px;
+                    text-align: center;
+                    padding-top: 30px;
+
+                    .image {
+                        width: 50px;
+                        height: 50px;
+                        background-size: contain;
+                        position: relative;
+                        display: inline-block;
+                        background-repeat: no-repeat;
+                    }
+
+                    &:not(.active) {
+                        cursor: pointer;
+                    }
+
+                    &.active {
+                        background-color: $colorBlueSignUp;
+                        color: $colorWhite;
+                    }
+
+                    span {
+                        display: block;
+                    }
+                }
+
+                .company-shop {
+                    margin-left: 8px;
+
+                    .image {
+                        @include background-image(url("/images/business_dark.png"));
+                    }
+
+                    &.active .image {
+                        @include background-image(url("/images/business_light.png"));
+                    }
+                }
+
+                .individual-shop {
+
+                    .image {
+                        @include background-image(url("/images/person_dark.png"));
+                    }
+
+                    &.active .image {
+                        @include background-image(url("/images/person_light.png"));
+                    }
+                }
+
+            }
+
+            .payment-method {
+                width: 100%;
+                margin-bottom: 20px;
+
+                button {
+                    width: 100%;
+                    text-transform: initial;
+
+                    .caret {
+                        position: relative;
+                        float: right;
+                        top: 9px;
+                    }
+
+                    .text {
+                        float: left;
+                    }
+                }
+            }
+
+            .success-title {
+                color: $colorBlue;
+                margin-bottom: 10px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                img {
+                    height: 25px;
+                    width: auto;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+    }
+
+}
+
+.options {
+    margin-top: 20px;
+    color: $colorGrey;
+    font-size: $fontSmall;
+
+    .left-side {
+        float: left;
+    }
+
+    .right-side {
+        float: right;
+        text-align: right;
+    }
+
+    a {
+        color: $colorGrey;
+        display: block;
+    }
+}
+
+.notice-link {
+    margin-top: 10px;
+    text-transform: uppercase;
+    color: $colorLightGrey;
+    text-align: center;
+    cursor: pointer;
+
+    a {
+        color: $colorBlue;
+    }
+}
+
+//
+//.login-logo {
+//    width: 60px;
+//    margin-bottom: 40px;
+//}
+//.register-sp-logo {
+//    width: 60px;
+//}
+//.register-title {
+//    font-size: 25px;
+//    margin-bottom: 40px;
+//    font-weight: 400;
+//    text-transform: uppercase;
+//}
+//.login-container {
+//    width: 36%;
+//    text-align: center;
+//    margin: 0 auto;
+//    padding: 50px;
+//}
+.facebook-login {
+    @include display(inline);
+    width: 100%;
+    background: #3c5a99;
+    height: 45px;
+    display: block;
+}
+
+.facebook-login:hover {
+    background: #284984;
+}
+
+.facebook-login img {
+    width: 10px;
+    margin-right: 10px;
+    margin-bottom: 2px;
+}
+
+.facebook-seperator {
+    height: 70px;
+}
+
+.facebook-or {
+    font-size: 12px;
+    color: #cccccc;
+    background: #f1f5f7;
+    border-radius: 50%;
+    padding: 5px;
+    line-height: 70px;
+    border: 1px solid #cccccc;
+}
+
+.facebook-seperator hr {
+    margin-top: -35px;
+}
+
+//.login-more-options {
+//    padding: 30px 0px;
+//    color: #828a90;
+//    font-size: 15px;
+//}
+//.login-more-options a {
+//    color: #828a90;
+//}
+//.login-signup-instead {
+//    float: left;
+//}
+//.login-forgot-password {
+//    float: right;
+//}
+//.name-half-input-left {
+//    width: 48%;
+//    float: left;
+//}
+//.name-half-input-right {
+//    width: 48%;
+//    float: right;
+//}
+//.select-user-type {
+//    text-align: center;
+//    padding: 50px;
+//    width: 60%;
+//    margin: 0 auto;
+//}
+//.register-select-normal-user {
+//    margin: 0 auto;
+//    float: left;
+//    width: 36%;
+//    background: #ffffff;
+//    border-radius: 4px;
+//    padding: 6%;
+//}
+//.register-select-sp {
+//    margin: 0 auto;
+//    float: right;
+//    width: 36%;
+//    background: #ffffff;
+//    border-radius: 4px;
+//    padding: 6%;
+//}
+//.register-type-icon {
+//    width: 100%;
+//    margin-bottom: 20px;
+//}
+//.register-type-icon img {
+//    height: 50px;
+//    margin-bottom: 30px;
+//    opacity: 0.7;
+//}
+//.register-top-text {
+//    margin: 40px 0px;
+//}
+//.register-payout-container {
+//    padding: 30px 0px;
+//}
+//.register-payout-option {
+//    padding: 15px 0px;
+//    text-align: left;
+//    font-size: 17px;
+//}
+//.register-payout-icon {
+//    float: left;
+//    width: 45px;
+//    margin-right: 15px;
+//    margin-top: -10px;
+//}
+//.register-payout-next-icon {
+//    float: right;
+//    width: 10px;
+//    opacity: 0.5;
+//}
+//
+//.form-error {
+//    text-align: left;
+//    color: red;
+//    font-size: 12px;
+//}
+//
+//.payout-info-setup {
+//    text-align: left;
+//}

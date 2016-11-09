@@ -1,0 +1,81 @@
+.modal-backdrop {
+    opacity:0.9 !important;
+}
+
+.modal-content {
+    border-radius: 8px !important;
+}
+
+.modal-header {
+    background: #e1e7ea;
+    min-height: 60px;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.modal-body {
+    overflow: auto;
+}
+
+.modal-footer {
+    height: 50px;
+    padding: 0;
+    -webkit-border-bottom-right-radius: 5px !important;
+    -webkit-border-bottom-left-radius: 5px !important;
+    -moz-border-radius-bottomright: 5px !important;
+    -moz-border-radius-bottomleft: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+    overflow: hidden;
+    border: none;
+}
+
+.modal-btn-full {
+    width: 100%;
+    height: 50px;
+    border-radius: 0;
+}
+
+.modal-btn-primary {
+    width: 70%;
+    height: 50px;
+    border-radius: 0;
+    float: right;
+}
+
+.modal-btn-secondary {
+    width: 30%;
+    height: 50px;
+    border-radius: 0;
+    background: #3c4a54;
+    float: left;
+}
+
+.modal-btn-secondary:hover {
+    background: #3c4a54;
+}
+
+.modal-btn-half {
+    width: 50%;
+    float: left;
+    height: 50px;
+    border-radius: 0;
+}
+
+.modal-header .close {
+    position: absolute;
+    top: -50px;
+    font-size: 40px;
+    right: -2px;
+    color: #ffffff;
+    opacity: 1;
+    font-weight: 100;
+}
+
+.modal-dialog {
+    margin: 60px auto;
+}

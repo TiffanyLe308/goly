@@ -1,0 +1,248 @@
+.profile {
+    .profile-header-and-menus {
+        width: 100%;
+        flex-shrink: 0;
+        .profile-user-main-info-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 45px 0 15px;
+            .profile-user-image-main {
+                width: 75px;
+                height: 75px;
+                border: 1px solid $colorCream;
+                border-radius: 50%;
+                overflow: hidden;
+                @extend .full-background-image;
+                &:hover .profile-change-image-trigger {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #ffffff;
+                    text-align: center;
+                }
+                .profile-change-image-trigger {
+                    width: 100%;
+                    height: 100%;
+                    display: none;
+                    background: #000000;
+                    opacity: 0.7;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+            }
+            .profile-user-info-main {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .profile-name-and-verified-badge {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    h3 {
+                        margin: 15px 0;
+                        font-size: 18px;
+                        @include mobile {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    }
+                    button {
+                        height: 25px;
+                        font-size: 14px;
+                        padding: 0 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: none;
+                        margin-left: 10px;
+                        cursor: pointer;
+                    }
+                    img {
+                        width: 17px;
+                        height: 17px;
+                    }
+                }
+
+                .shop-info-block {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    font-size: 14px;
+
+                    div {
+                        margin-right: 20px;
+                        flex-grow: 1;
+                        text-align: center;
+
+                        &.limit-width {
+                            max-width: 200px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+
+                        .fa {
+                            width: 14px;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .profile-favorites-wrap {
+        flex-wrap: wrap;
+        display: flex;
+        width: 100%;
+        .no-favorite-services {
+            width: 100%;
+            padding: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+    }
+    .profile-account-wrap {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+        padding-bottom: 50px;
+        section {
+            width: 50%;
+            flex-shrink: 0;
+            padding-right: 25px;
+            @include mobile {
+                width: 100%;
+                padding: 0;
+            }
+            .profile-explain-points {
+                font-size: 14px;
+            }
+            .goly-points-count-wrap {
+                background: red;
+                height: 86px;
+                background: $colorBlueLight;
+                border-radius: $radiusDefault;
+                margin: 30px 0 25px;
+                display: flex;
+                justify-content: space-between;
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    width: 33%;
+                    height: 100%;
+                    font-size: 22px;
+                    label {
+                        font-size: 13px;
+                    }
+                }
+            }
+            .account-earn-points-wrap {
+                div {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 15px;
+                    min-height: 40px;
+                    cursor: pointer;
+                    background: $colorCream;
+                    border: none;
+                    color: $colorMain;
+                    p {
+                        font-weight: 300;
+                    }
+                    img {
+                        width: 8px;
+                        height: 15px;
+                    }
+                }
+            }
+        }
+        .profile-account-security-item-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            div {
+                display: flex;
+                flex-direction: column;
+                label {
+                    color: $colorLabel;
+                }
+            }
+            button {
+                cursor: pointer;
+                background: $colorCream;
+                border: none;
+                color: $colorMain;
+                &:hover {
+                    background: $colorCreamDark;
+                }
+            }
+        }
+        .profile-account-settings-and-security-wrap {
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            width: 50%;
+            padding-left: 25px;
+            section {
+                width: 100%;
+                padding-right: 0;
+            }
+            @include mobile {
+                width: 100%;
+                padding: 0;
+            }
+        }
+    }
+}
+
+.profile-input-wrap {
+    .validation-error {
+        color: $colorRed;
+        font-size: 14px;
+        width: 100% !important;
+        margin-bottom: 5px;
+    }
+    label {
+        margin-top: 0;
+        color: $colorLabel;
+    }
+    input {
+
+    }
+    .profile-half-input-wrap {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        div {
+            width: 49%;
+        }
+    }
+    .profile-full-input-wrap {
+        margin-bottom: 25px;
+    }
+    button {
+        width: 100%;
+    }
+    .verify-email-span {
+        button {
+            cursor: pointer;
+            background: $colorCream;
+            color: $colorMain;
+            &:hover {
+                background: $colorCreamDark;
+            }
+        }
+    }
+}

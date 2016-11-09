@@ -1,0 +1,32 @@
+/* ----------------------------------- favorites ------------------------------- */
+
+.favorite-services-container {
+    margin: 0 auto;
+
+    .sub-nav-container {
+        width: 100%;
+        border-bottom: 1px solid $colorLightGrey;
+        display: flex;
+        height: 60px;
+        align-items: flex-end;
+        flex-shrink: 0;
+
+        span {
+            display: inline-block;
+            margin-right: 50px;
+            cursor: pointer;
+
+            &.active-tab {
+                border-bottom: 3px solid $colorStarTop;
+            }
+        }
+    }
+
+    .favorite-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+}

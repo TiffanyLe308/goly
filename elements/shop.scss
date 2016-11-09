@@ -1,0 +1,246 @@
+.shop {
+    .public-shop-share-wrap {
+        display: flex;
+        align-items: center;
+        margin: 20px 0 0 0;
+        flex-direction: row;
+    }
+
+    .service-group-list-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 25px 0;
+        flex-shrink: 0;
+        .add-group {
+            color: $colorBlueDarker;
+            font-size: 15px;
+            margin-bottom: 15px;
+            align-self: flex-start;
+            height: 35px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            cursor: pointer;
+            border-radius: $radiusDefault;
+            transition: all 0.3s ease-out;
+            &:hover {
+                background: $colorBlue;
+                color: #ffffff;
+            }
+        }
+        .service-group-wrap {
+            margin-bottom: 35px;
+            .service-group-header {
+                width: 100%;
+                height: 45px;
+                flex-shrink: 0;
+                background: $colorBlueLight;
+                display: flex;
+                align-items: center;
+                padding: 0 15px;
+                h3 {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 25px;
+                    height: 25px;
+                }
+                span {
+                    margin-left: 15px;
+                    font-size: 12px;
+                    color: $colorGrey;
+                }
+                .service-edit-button {
+                    cursor: pointer;
+                    font-weight: 400;
+                    color: $colorMainLighter;
+                    height: 25px;
+                    display: flex;
+                    align-items: center;
+                    transition: all 0.3s ease;
+                    &:hover {
+                        background: $colorMainLighter;
+                        color: #ffffff;
+                        border-radius: $radiusDefault;
+                        padding: 0 10px;
+                    }
+                }
+            }
+            .group-services-wrap {
+                display: flex;
+                flex-wrap: wrap;
+
+                .add-new-service-wrap {
+                    width: 33.33%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid $colorLightGrey;
+                    margin: -1px 0 0 -1px;
+                    cursor: pointer;
+                    transition: background 0.3s ease-out;
+                    min-height: 340px;
+                    @include mobile {
+                        width: 100%;
+                    }
+                    @include tablet {
+                        width: 50%;
+                    }
+                    &:hover {
+                        background: $colorCream;
+                    }
+                    h3 {
+                        font-weight: 900;
+                        font-size: 20px;
+                    }
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.get-verified-method-wrap {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $colorCream;
+    justify-content: space-between;
+    height: 70px;
+    min-height: 70px;
+    .get-verified-method-name-and-icon {
+        display: flex;
+        align-items: center;
+        img {
+            width: 17px;
+            height: 17px;
+            margin-bottom: 3px;
+            margin-right: 10px;
+        }
+        p {
+
+        }
+    }
+    .verify-method-btn {
+        border: none;
+    }
+    .verified-method-btn {
+        background: $colorGreen;
+        border: none;
+    }
+}
+
+.form-input-price-discount-wrap {
+    display: flex;
+    justify-content: space-between;
+    .form-input {
+        .price-icon-and-input-wrap {
+            display: flex;
+            border: 1px solid $colorLightGrey;
+            border-radius: $radiusDefault;
+            .price-type-icon {
+                width: 50px;
+                background: $colorBlueLight;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-right: 1px solid $colorLightGrey;
+            }
+            input {
+                border: none;
+            }
+        }
+        p {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            color: $colorLightGrey;
+            .discounted-price {
+                color: $colorMain;
+            }
+        }
+    }
+}
+
+.shop-piggy-wrap {
+    width: 100%;
+    h1 {
+        color: $colorGrey;
+        text-align: center;
+        margin: 50px auto;
+    }
+}
+
+.shop-network-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .shop-network-block {
+        flex: 0;
+        margin-top: 40px;
+        &:last-of-type {
+            margin-bottom: 40px;
+        }
+
+        .shop-network-block-header {
+            width: 100%;
+            height: 45px;
+            flex-shrink: 0;
+            background: $colorBlueLight;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            h3 {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 25px;
+                height: 25px;
+            }
+        }
+
+        .shop-network-request {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid $colorBlueLight;
+            border-top: none;
+            padding: 20px 10px;
+            @include mobile {
+                flex-wrap: wrap;
+            }
+
+            .invitation-content {
+                flex-grow: 1;
+                padding: 0 10px;
+
+                h4 {
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    color: $colorGrey;
+                    font-size: $fontNormal;
+                    white-space: pre-wrap;
+                }
+            }
+
+            .invitation-actions {
+                @include mobile {
+                    width: 100%;
+                    text-align: right;
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        .shop-network-fragment-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+    }
+}

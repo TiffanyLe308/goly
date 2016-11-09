@@ -1,0 +1,458 @@
+// Should be moved to utils.scss
+$modalDialogPadding: 50px;
+$modalDialogPaddingMobile: 25px;
+
+.modal.payment-window .modal-dialog {
+    width: 100%;
+    max-width: 870px;
+}
+
+.modal-dialog {
+    margin: 50px auto;
+    width: 100%;
+    max-width: 510px;
+    @include mobile {
+        margin: 20px auto;
+    }
+
+    .modal-content {
+        width: 100%;
+        padding: ($modalDialogPadding - 25) $modalDialogPadding $modalDialogPadding;
+        border-radius: $radiusDefault !important;
+        @include mobile {
+            width: calc(100% - 20px);
+            margin: 50px 10px;
+            padding: ($modalDialogPaddingMobile - 25) $modalDialogPaddingMobile $modalDialogPaddingMobile;
+        }
+
+        .modal-header {
+            background: $colorWhite;
+            border: none;
+            padding: 0 !important;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .underline-style-section-header {
+                margin: 0;
+            }
+
+            .close {
+                color: $colorGreyBorder;
+                font-weight: 100;
+                cursor: pointer;
+                top: $modalDialogPadding - 20;
+                right: $modalDialogPadding;
+                @include mobile {
+                    right: 20px;
+                }
+
+                &:hover {
+                    color: $colorMain;
+                }
+            }
+        }
+
+        .modal-body {
+            overflow: inherit;
+            margin-top: 0;
+            padding: 0 !important;
+
+            .description {
+                margin: 10px auto;
+                font-size: $fontNormal;
+                font-weight: 500;
+
+            }
+
+            ul, ol {
+                font-weight: 400;
+            }
+
+            .tab-content {
+                padding-top: 20px;
+            }
+        }
+    }
+
+    form {
+        //margin: 20px 0;
+
+        .thumb {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-top: 10px;
+        }
+    }
+
+    .tag-list {
+        margin: 0;
+        padding: 0;
+    }
+
+    .review {
+        margin-bottom: 20px;
+
+        .review-row {
+            display: flex;
+            flex-direction: row;
+            padding: 5px 0;
+
+            .title {
+                width: 40%;
+            }
+
+            .content {
+                width: 60%;
+                font-weight: 500;
+
+                &.long-text {
+                    word-wrap: break-word;
+                }
+
+                .radio, .checkbox {
+                    margin: 0;
+
+                    label {
+                        margin: 0;
+                    }
+                }
+
+                .radio-label {
+                    position: relative;
+                    top: -13px;
+                    left: 10px;
+                    font-weight: 300;
+                }
+            }
+
+            &.cancellation-row {
+                border-top: 1px solid $colorMain;
+                margin-top: 20px;
+                padding-top: 20px;
+
+                input {
+                    font-weight: 300;
+                }
+
+                .review-column {
+                    display: flex;
+                    flex-direction: column;
+                    margin-right: 50px;
+
+                    .content,
+                    .title {
+                        margin-bottom: 10px;
+                    }
+
+                    .content {
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            label {
+                margin: 10px 0 5px;
+            }
+        }
+
+        .terms {
+            color: $colorLightGrey;
+            font-size: $fontSmall;
+
+            padding-top: 20px;
+            padding-bottom: 5px;
+            width: 100%;
+            margin-left: 25%;
+        }
+    }
+
+    .payment-container {
+        display: flex;
+        flex-direction: row;
+        @include mobile {
+            flex-direction: column;
+        }
+
+        .payment-methods {
+            width: 60%;
+            padding-left: 20px;
+            border-left: 1px solid $colorLightGrey;
+            @include mobile {
+                width: 100%;
+                padding: 0;
+                border: none;
+                margin-top: 20px;
+            }
+
+            .panel-group {
+                margin-top: 0;
+
+                .panel {
+                    box-shadow: none;
+                }
+
+                .panel-title {
+                    font-size: $fontMedium;
+                    font-weight: 500;
+
+                    .method-icon {
+                        float: right;
+                    }
+                }
+            }
+        }
+
+        .summary-container {
+            display: flex;
+            flex-direction: column;
+            padding-right: 20px;
+            width: 40%;
+            @include mobile {
+                padding: 0;
+                width: 100%;
+            }
+
+            .payment-details {
+                display: flex;
+                flex-direction: row;
+                @include justify-content(space-between);
+
+                margin-top: 20px;
+            }
+
+            .content {
+                font-weight: 500;
+            }
+
+            .summary-header {
+                font-size: $fontMedium;
+                font-weight: 500;
+                margin-top: 7px;
+                margin-bottom: 20px;
+
+                .warning {
+                    font-size: $fontNormal;
+                    color: $colorRed;
+                }
+            }
+        }
+
+    }
+
+    .payment-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .title {
+            width: 80%;
+        }
+
+        &:last-of-type {
+            border-top: 1px solid $colorGrey;
+            margin-top: 20px;
+            font-size: $fontMedium;
+            padding-top: 10px;
+        }
+    }
+
+    .modal-footer {
+        margin-top: 25px;
+
+        .modal-btn-full {
+            border-radius: $radiusDefault !important;
+        }
+    }
+}
+
+.modal-invite-friends {
+    h4 {
+        margin-top: 20px;
+        font-weight: 500;
+    }
+
+    .invitation-link {
+        width: 100%;
+        padding: 10px;
+        background-color: $colorCream;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .share-buttons-container {
+        .btn {
+            margin-top: 5px;
+        }
+
+        .btn-copy {
+            background-color: $colorBlue;
+
+            &:hover {
+                background: $colorBlueDarker;
+            }
+        }
+    }
+}
+
+.summary-container {
+    display: flex;
+    flex-direction: column;
+    padding-right: 20px;
+}
+
+// Special style for Lightbox modal
+.lightbox-modal {
+    .modal-dialog {
+        max-width: none;
+
+        .modal-content {
+            padding: 0;
+        }
+
+        .lightbox-nav {
+            height: 25px;
+
+            .close {
+                color: $colorGreyBorder;
+                font-weight: 100;
+                cursor: pointer;
+                top: 6px;
+                right: 16px;
+                opacity: 1;
+
+                &:hover {
+                    color: $colorMain;
+                }
+            }
+
+            .summary-header {
+                font-size: $fontMedium;
+                font-weight: 500;
+                margin-top: 7px;
+                margin-bottom: 20px;
+            }
+        }
+
+    }
+
+    .payment-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .title {
+            width: 80%;
+        }
+
+        &:last-of-type {
+            border-top: 1px solid $colorGrey;
+            margin-top: 20px;
+            font-size: $fontMedium;
+            padding-top: 10px;
+        }
+    }
+
+}
+
+.modal-btn-full {
+
+    display: inline-block;
+}
+
+// ng-autocomplete, requires for modals.
+.pac-container {
+    z-index: 9999;
+}
+
+.modal-btn.back,
+.modal-btn.send-offer {
+    display: inline-block;
+    height: 50px;
+}
+
+.modal-btn.back {
+    background-color: $colorMain;
+    width: 24%;
+}
+
+.modal-btn.send-offer {
+    width: 75%;
+}
+
+.modal-request-payout {
+    .criteria-container {
+        display: flex;
+        flex-direction: row;
+
+        .criteria-box {
+            flex: 1;
+            margin-right: 10px;
+            background: $colorBlueLight;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+
+            h3 {
+                font-size: $fontNormal;
+                margin: 10px 0
+            }
+
+            p {
+                font-weight: 100;
+                font-size: $fontSmall;
+                text-align: center;
+            }
+        }
+    }
+
+    label {
+        text-align: center;
+    }
+}
+
+.modal-footer-multi-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    .modal-delete-small-btn {
+        min-width: 32%;
+        margin-left: 0;
+        background: $colorRed;
+    }
+    .modal-main-half-btn {
+        min-width: 32%;
+    }
+}
+
+.recommend-modal {
+    .search-box {
+        margin-bottom: 0;
+    }
+
+    .recommend-list {
+        display: flex;
+        flex-direction: column;
+        max-height: calc(100vh - 340px);
+        min-height: 200px;
+        overflow-y: scroll;
+        &.service-list {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        service-fragment {
+            width: 50%;
+            @include mobile {
+                width: 100%;
+            }
+
+            .service-image {
+                height: 150px;
+            }
+        }
+    }
+}

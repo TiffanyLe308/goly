@@ -1,0 +1,151 @@
+<!--IN-APP BANNER-->
+<div class="alert alert-warning" id="alert-verify-email" role="alert" ng-if="showVerifyEmail">
+    <div class="content-wrap">
+        <p><b>Note: </b> Your email is not verified. Please verify your email to complete your profile!</p>
+        <div class="alert-actions">
+            <button type="button" class="btn btn-success btn-sm" data-dismiss="alert" ng-click="sendVerifyEmail()">
+                Verify now
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-dismiss="alert" aria-label="Close"
+                    ng-click="remindLater('verifyEmailReminder')">
+                Do it later
+            </button>
+        </div>
+    </div>
+</div>
+<div class="alert alert-success" id="alert-invitation-reminder" role="alert" ng-if="showInvitationReminder">
+    <div class="content-wrap">
+        <p><b>Hint: </b> Invite your friends to Goly and earn ₦200 for each friend that registers to Goly via your
+            invitation link.
+        </p>
+        <div class="alert-actions">
+            <button type="button" class="btn btn-success btn-sm" data-dismiss="alert" ng-click="sendInvitation()">Invite
+                friends
+            </button>
+            <button type="button" class="btn btn-default btn-sm" data-dismiss="alert" aria-label="Close"
+                    ng-click="remindLater('invitationReminder')">
+                Do it later
+            </button>
+        </div>
+    </div>
+</div>
+<!--END IN-APP BANNER-->
+
+<div class="nav-top-wrap" ng-if="!visitor">
+    <div class="nav-top-content-wrap">
+
+        <a href="/"><img alt="" class="logo" src="/images/logos/logo_horizontal_light.png"/></a>
+
+        <span class="flex"></span>
+        <div class="nav-top-search-wrap">
+            <img class="nav-mobile-menu-toggle-button" src="/images/menu_light.png" ng-click="toggleMobileMenu()"/>
+        </div>
+    </div>
+</div>
+<div class="nav-top-wrap-visitor nav-top-wrap" ng-if="visitor">
+    <div class="nav-top-content-wrap nav-top-content-wrap-visitor">
+
+        <a href="/"><img alt="" class="logo" src="/images/logos/logo_horizontal_light.png"/></a>
+
+        <span class="flex"></span>
+        <div class="nav-top-search-wrap">
+            <img class="nav-mobile-menu-toggle-button" src="/images/menu_light.png" ng-click="toggleMobileMenu()"/>
+        </div>
+        <div class="nav-visitor-menu">
+            <a href="https://goly.freshdesk.com/support/home" ng-if="supported">Help</a>
+            <a href="/login" ng-if="supported">Login</a>
+            <a href="/signup/register-user" ng-if="supported">Sign up</a>
+            <a href="/sell-services" ng-if="isState('explore')">
+                <button class="nav-sign-up" ng-if="visitor">Sell services</button>
+            </a>
+            <a href="/" ng-if="isState('sell-services')">
+                <button class="nav-sign-up" ng-if="visitor">Find services</button>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="header-navigation" ng-if="!visitor">
+    <div class="navigation-menu-wrap">
+        <a href="/search">
+            <div class="nav-left-menu-item" ui-sref-active-if="explore" id="intro-explore-search">
+                Find services
+            </div>
+        </a>
+
+        <a href="/orders">
+            <div class="nav-left-menu-item" ui-sref-active-if="orders" id="intro-explore-orders">Orders
+            </div>
+        </a>
+
+        <a href="/favorite">
+            <div class="nav-left-menu-item" ui-sref-active-if="favorites" id="intro-explore-favorites">Favorites
+            </div>
+        </a>
+
+        <a ng-href="/shop/{{currentUser.listShopIds[0]}}" ng-if="isServiceProvider" id="intro-explore-shop">
+            <div class="nav-left-menu-item" ui-sref-active-if="shop">
+                My Shop
+            </div>
+        </a>
+
+        <span class="flex"></span>
+
+        <div class="nav-user-profile-link">
+            <div class="nav-user-wrap" ng-click="toggleSlideDown()">
+                <div class="name">
+                    {{currentUser.firstName + ' ' + currentUser.lastName}}
+                </div>
+                <div class="nav-bar-user-image"
+                     ng-style="currentUser.profilePhoto && {'background-image': 'url(' + currentUser.profilePhotoLink + ')'}"></div>
+            </div>
+            <div class="nav-slidedown"
+                 ng-class="slideDownVisible ? 'nav-slidedown-show' : ''" id="nav-slidedown">
+                <a href="/profile/{{currentUser.id}}" id="intro-explore-profile">Profile</a>
+                <a href="/signup/register-user/set-up-shop" ng-if="!isServiceProvider" id="intro-explore-createshop">Create
+                    a shop</a>
+                <a href="#" ng-click="sendInvitation()" id="intro-explore-invite">Invite and earn ₦200</a>
+                <a href="//blog.goly.co/category/service-knowledge-vault/"
+                   mixpanel-trigger="click" mixpanel-event="VISIT BLOG" track-from="Learning center"
+                   id="intro-explore-learning">Learning center</a>
+                <a href="" ng-click="logout()">Log out</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="slide-down-menu-back-overlay" ng-click="toggleSlideDown()"
+     ng-if="slideDownVisible">
+</div>
+
+<div class="mobile-slidedown-menu-wrap" ng-class="mobileMenuVisible ? 'show-mobile-slidedown-menu' : ''"
+     ng-if="!visitor">
+    <img src="/images/cancel_light.png" alt="" ng-click="toggleMobileMenu()"/>
+    <a href="/search" id="intro-explore-mobile-search" ng-click="toggleMobileMenu()">Find services</a>
+    <a href="/orders" id="intro-explore-mobile-orders" ng-click="toggleMobileMenu()">Orders</a>
+    <a href="/favorite" id="intro-explore-mobile-favorites" ng-click="toggleMobileMenu()">Favorites</a>
+    <a ng-href="/shop/{{currentUser.listShopIds[0]}}" ng-if="isServiceProvider" ng-click="toggleMobileMenu()"
+       id="intro-explore-mobile-myshop">My Shop</a>
+    <div class="mobile-menu-separator"></div>
+    <a href="/profile" id="intro-explore-mobile-profile" ng-click="toggleMobileMenu()">Profile</a>
+    <a href="/signup/register-user/set-up-shop" ng-if="!isServiceProvider" id="intro-explore-mobile-createshop"
+       ng-click="toggleMobileMenu()">Create a shop</a>
+    <a href="#" ng-click="sendInvitation();toggleMobileMenu();" id="intro-explore-mobile-invitation">Invite and earn
+        ₦200</a>
+    <a href="//blog.goly.co/category/service-knowledge-vault/" id="intro-explore-mobile-learning">Learning center</a>
+    <a href="" ng-click="logout();toggleMobileMenu();">Log out</a>
+</div>
+
+<div class="mobile-slidedown-menu-wrap" ng-class="mobileMenuVisible ? 'show-mobile-slidedown-menu' : ''"
+     ng-if="visitor">
+    <img src="/images/cancel_light.png" alt="" ng-click="toggleMobileMenu()"/>
+    <a href="/sell-services" ng-click="toggleMobileMenu()">Sell services</a>
+    <a href="/">Find services</a>
+    <div class="mobile-menu-separator" ng-if="supported" ng-click="toggleMobileMenu()">
+    </div>
+    <a href="https://goly.freshdesk.com/support/home" ng-if="supported" ng-click="toggleMobileMenu()">Help</a>
+    <a href="/login" ng-if="supported" ng-click="toggleMobileMenu()">Login</a>
+    <a href="/signup/register-user" ng-if="supported" ng-click="toggleMobileMenu()">Sign up</a>
+</div>
