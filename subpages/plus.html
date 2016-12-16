@@ -1,0 +1,319 @@
+<div class="sub-page">
+    <header main-nav hide-search-bar="true" class="fixed-nav"></header>
+    <div id="plus-container">
+        <div class="banner-section">
+            <div class="banner-plus-image"></div>
+            <label>Goly <i>Plus</i></label>
+            <h1>Get more visibility and delight customers with Goly <i>Plus</i></h1>
+            <div class="banner-description">
+                <p>All the features of Basic Goly and more</p>
+            </div>
+            <a class="button btn clickable banner-button" ng-click="goToAnchor('plus-choose-plan')">Achieve more with
+                Plus</a>
+        </div>
+
+        <div class="plus-features-wrap">
+            <div class="section-plus-feature plus-feature-images">
+                <div class="feature-discription">
+                    <h2>Add unlimited images to capture client's attention</h2>
+                    <p>Your shop and services show the reputation of your business, and our goal is to generate online
+                        deal for your through our platform.</p>
+                    <p>Goly <i>Plus</i> let you add unlimited images to showcase your service.</p>
+                </div>
+                <img class="feature-image-mobile" src="/images/plus_images.png" alt=""/>
+            </div>
+
+            <div class="section-plus-feature plus-feature-visibility">
+                <div class="feature-discription">
+                    <h2>Increase visibility and reach more client</h2>
+                    <p>Get featured on Goly homepage and appear first on search results.</p>
+                    <p>Customer will find you easily and your chance of getting deals increase.</p>
+                </div>
+                <img class="feature-image-mobile" src="/images/plus_visibility.png" alt=""/>
+            </div>
+
+            <div class="section-plus-feature plus-feature-profile">
+                <div class="feature-discription">
+                    <h2>Personalize your profile and increase customer's trust</h2>
+                    <p>With the <i>Plus</i> account, you can include information on your profile such as phone number,
+                        website address, and social media pages. In addition to Goly built-in messaging system, clients
+                        will be able to reach out directly to you through these channels.</p>
+                </div>
+                <img class="feature-image-mobile" src="/images/plus_profile.png" alt=""/>
+            </div>
+
+            <div class="section-plus-feature plus-feature-attach">
+                <div class="feature-discription">
+                    <h2>Wow customers with unlimited documents and attachments</h2>
+                    <p><i>Plus</i> plan lets you impress customers to close more deals and also keep them excited and
+                        updated about the progress of work from anywhere.</p>
+                </div>
+                <img class="feature-image-mobile" src="/images/plus_attachments.png" alt=""/>
+            </div>
+
+            <div class="section-plus-feature plus-feature-payment">
+                <div class="feature-discription">
+                    <h2>Get paid however you want*</h2>
+                    <p><i>Plus</i> account let you accept cash, cheques, POS, and bank transfer directly without going
+                        through Goly</p>
+                    <p><strong>* Note:</strong> 3% payment through processing fee on online payments through Goly still
+                        applies.</p>
+                </div>
+                <img class="feature-image-mobile" src="/images/plus_payment.png" alt=""/>
+            </div>
+        </div>
+
+        <div id="plus-choose-plan">
+            <h2>Choose the subscription that you want</h2>
+            <div class="plus-choose-plan-body">
+                <div class="plus-plan-duration-wrap">
+                    <div class="plus-choose-plan-duration">
+                        <h3>Yearly subscription</h3>
+                        <label>₦60,000 <span>/year</span></label>
+                        <p>
+                            (Save ₦12,000 annually)
+                        </p>
+                    </div>
+                    <div class="plus-choose-plan-or">
+                        <div>
+
+                        </div>
+                        <p>
+                            Or
+                        </p>
+                    </div>
+                    <div class="plus-choose-plan-duration">
+                        <h3>Monthly subscription</h3>
+                        <label>₦6,000 <span>/month</span></label>
+                    </div>
+                </div>
+                <button class="button" ng-click="getPlus()">Get Plus</button>
+                <a ng-click="goToAnchor('compare')" id="comparing-link">
+                    Compare plans
+                </a>
+            </div>
+        </div>
+        <div class="plus-compare-wrap-desktop plus-compare-toggle-wrap show-plus-compare-plan" id="compare">
+            <h2>Compare plans</h2>
+            <table id="plus-full-table">
+                <thead>
+                <tr>
+                    <th colspan="2"></th>
+                    <th>
+                        BASIC
+                        <h3>Free</h3>
+                    </th>
+                    <th>
+                        PLUS
+                        <h3>₦60,000/year</h3>
+                    </th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td ng-class="{'hidden-cell': !signupLink}"><a class="button-full button-compare-basic"
+                                                                   ng-href="{{signupLink}}" ng-if="signupLink">Start
+                        with basic</a>
+                    </td>
+                    <td>
+                        <button class="button-full button-compare-plus" ng-click="getPlus()">Get Plus</button>
+                    </td>
+                </tr>
+                </tfoot>
+
+                <tbody>
+                <tr>
+                    <td rowspan="3" class="main-feature">Storefront</td>
+                    <td>Service listing</td>
+                    <td class="td-basic">Unlimited</td>
+                    <td class="td-plus">Unlimited</td>
+                </tr>
+                <tr>
+                    <td>Images</td>
+                    <td class="td-basic">5 per service</td>
+                    <td class="td-plus">Unlimited</td>
+                </tr>
+                <tr>
+                    <td>Videos</td>
+                    <td class="td-basic">100MB</td>
+                    <td class="td-plus">5GB</td>
+                </tr>
+                <tr>
+                    <td rowspan="3" class="main-feature">Communication</td>
+                    <td>Proposal</td>
+                    <td class="td-basic">Standard</td>
+                    <td class="td-plus">Branded + Offline</td>
+                </tr>
+                <tr>
+                    <td>Send files</td>
+                    <td class="td-basic">Images</td>
+                    <td class="td-plus">Images + Documents</td>
+                </tr>
+                <tr>
+                    <td>Smart alert</td>
+                    <td class="td-basic">Email, SMS, Push notification</td>
+                    <td class="td-plus">Email, SMS, Push notification</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="main-feature">Collaboration</td>
+                    <td>Private network</td>
+                    <td class="td-basic">Yes</td>
+                    <td class="td-plus">Yes</td>
+                </tr>
+                <tr>
+                    <td>Collaborate with vendors and clients</td>
+                    <td class="td-basic">Yes</td>
+                    <td class="td-plus">Yes</td>
+                </tr>
+                <tr>
+                    <td rowspan="4" class="main-feature">Transaction and Business Insights</td>
+                    <td>Payments</td>
+                    <td class="td-basic">Online</td>
+                    <td class="td-plus">Cash + Online</td>
+                </tr>
+                <tr>
+                    <td>Payment processing fee</td>
+                    <td class="td-basic">5% (at 50% discount)</td>
+                    <td class="td-plus">3% (capped at ₦5,000)<br/>Apply to online payment only</td>
+                </tr>
+                <tr>
+                    <td>Invoices</td>
+                    <td class="td-basic">Standard</td>
+                    <td class="td-plus">Branded + Offline</td>
+                </tr>
+                <tr>
+                    <td>Analytics</td>
+                    <td class="td-basic">Standard</td>
+                    <td class="td-plus">Standard</td>
+                </tr>
+                <tr>
+                    <td rowspan="2" class="main-feature">Enhanced Visibility</td>
+                    <td>Featured listing</td>
+                    <td class="td-basic"></td>
+                    <td class="td-plus">yes</td>
+                </tr>
+                <tr>
+                    <td>Phone contact, email, links to social profiles</td>
+                    <td class="td-basic"></td>
+                    <td class="td-plus">yes</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table id="plus-mobile-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        BASIC
+                        <h3>Free</h3>
+                    </th>
+                    <th>
+                        PLUS
+                        <h3>₦60,000<br>/year</h3>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td colspan="3" class="mobile-plus-table-head">Storefront</td>
+                </tr>
+                <tr>
+                    <td>Service listing</td>
+                    <td class="td-basic">Unlimited</td>
+                    <td class="td-plus">Unlimited</td>
+                </tr>
+                <tr>
+                    <td>Images</td>
+                    <td class="td-basic">5 per service</td>
+                    <td class="td-plus">Unlimited</td>
+                </tr>
+                <tr>
+                    <td>Videos</td>
+                    <td class="td-basic">100MB</td>
+                    <td class="td-plus">5GB</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="mobile-plus-table-head">Communication</td>
+                </tr>
+                <tr>
+                    <td>Proposal</td>
+                    <td class="td-basic">Standard</td>
+                    <td class="td-plus">Branded + Offline</td>
+                </tr>
+                <tr>
+                    <td>Send files</td>
+                    <td class="td-basic">Images</td>
+                    <td class="td-plus">Images + Documents</td>
+                </tr>
+                <tr>
+                    <td>Smart alert</td>
+                    <td class="td-basic">Email, SMS, Push notification</td>
+                    <td class="td-plus">Email, SMS, Push notification</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="mobile-plus-table-head">Collaboration</td>
+                </tr>
+                <tr>
+                    <td>Private network</td>
+                    <td class="td-basic">Yes</td>
+                    <td class="td-plus">Yes</td>
+                </tr>
+                <tr>
+                    <td>Collaborate with vendors and clients</td>
+                    <td class="td-basic">Yes</td>
+                    <td class="td-plus">Yes</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="mobile-plus-table-head">Transaction and Business Insights</td>
+                </tr>
+                <tr>
+                    <td>Payments</td>
+                    <td class="td-basic">Online</td>
+                    <td class="td-plus">Cash + Online</td>
+                </tr>
+                <tr>
+                    <td>Payment processing fee</td>
+                    <td class="td-basic">5% (at 50% discount)</td>
+                    <td class="td-plus">3% (capped at ₦5,000)<br/>Apply to online payment only</td>
+                </tr>
+                <tr>
+                    <td>Invoices</td>
+                    <td class="td-basic">Standard</td>
+                    <td class="td-plus">Branded + Offline</td>
+                </tr>
+                <tr>
+                    <td>Analytics</td>
+                    <td class="td-basic">Standard</td>
+                    <td class="td-plus">Standard</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="mobile-plus-table-head">Enhanced Visibility</td>
+                </tr>
+                <tr>
+                    <td>Featured listing</td>
+                    <td class="td-basic"></td>
+                    <td class="td-plus">yes</td>
+                </tr>
+                <tr>
+                    <td>Phone contact, email, links to social profiles</td>
+                    <td class="td-basic"></td>
+                    <td class="td-plus">yes</td>
+                </tr>
+                <tr>
+                    <td>Annual price</td>
+                    <td class="td-basic">Free</td>
+                    <td class="td-plus">₦60,000/year</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="table-mobile-btns">
+                <a class="button button-compare-basic" ng-href="{{signupLink}}" ng-if="signupLink">Start with basic</a>
+                <button class="button button-compare-plus" ng-click="getPlus()">Get Plus</button>
+            </div>
+        </div>
+    </div>
+    <div footer></div>
+</div>
