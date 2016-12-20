@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <div aria-label="Close" class="close" ng-click="close();" type="button">
+        <span aria-hidden="true">&times;</span>
+    </div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Create new group
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="form-input">
+        <label>Group name</label>
+        <input name="name" placeholder="Eg. Wedding planning, Christmas promo." ng-model="groupName" maxlength="50">
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="modal-btn-full" ng-disabled="!groupName" ng-click="createGroup()" type="button">
+        Create
+    </button>
+</div>

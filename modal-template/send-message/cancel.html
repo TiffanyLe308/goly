@@ -1,0 +1,79 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header">Cancel order
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="description" ng-show="order.status === 'PAID'">
+        Are you sure you want to cancel the order? ​{{order.shopName}}​ will charge ​<span style="color: red;">{{(order.orderPrice.price *
+        order.cancelationFeePercentage / 100) | currency: order.orderPrice.currencySign : 2}}</span> which was specified
+        in the
+        terms of this order.
+    </div>
+
+    <form ng-submit="submitCancel();">
+        <div class="form-input">
+            <label>Reason for cancelation</label>
+                      <textarea cols="40" ng-model="$parent.message"
+                                name="message"
+                                required
+                                placeholder="Type message..."
+                                rows="8"></textarea>
+
+        </div>
+        <div class="description" ng-show="order.status === 'PAID'">
+            You will be refunded the amount of {{order.orderPrice.price -(order.orderPrice.price *
+            order.cancelationFeePercentage / 100) | currency: order.orderPrice.currencySign : 2}} to your bank account.
+        </div>
+        <div class="form-input" ng-init="initCancelOrder()">
+            <div class="payout-form">
+                <div class="form-input-half">
+                    <div class="input-half">
+                        <label>First name</label>
+                        <input
+                                placeholder="First name" type="text"
+                                name="firstname" ng-required="true"
+                                ng-model="payoutAccount.firstName">
+
+                    </div>
+                    <div class="input-half">
+                        <label>Last name</label>
+                        <input
+                                placeholder="Last name"
+                                type="text"
+                                name="lastname" ng-required="true"
+                                ng-model="payoutAccount.lastName">
+
+                    </div>
+                </div>
+
+                <div class="form-input">
+                    <label>Bank name</label>
+                    <input placeholder="Bank name"
+                           type="text"
+                           name="bankName" ng-required="true"
+                           ng-model="payoutAccount.bankName">
+
+                </div>
+
+                <div class="form-input">
+                    <label>Account number</label>
+                    <input placeholder="Account number"
+                           type="text"
+                           name="bankAccount" ng-required="true"
+                           ng-model="payoutAccount.bankAccount">
+
+                </div>
+
+            </div>
+        </div>
+
+        <button class="modal-btn-full red-button" name="button"
+                type="submit">End
+        </button>
+    </form>
+
+</div>

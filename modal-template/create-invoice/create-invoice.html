@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <div type="button" class="close" aria-label="Close" ng-click="close()"><span aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Add invoice
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+
+    <div class="add-service-info-wrap">
+        <select ng-model="selectedService" ng-options="service as service.name for service in services">
+            <option selected disabled value="">Select a service</option>
+        </select>
+        <select name="" ng-model="selectedCustomer" ng-init="choose" ng-options="customer for customer in listCustomer">
+            <option selected disabled value="">Select customer</option>
+        </select>
+        <input ng-if="selectedCustomer == 'other'" type="text" name="title" ng-model="$parent.inputCustomer"
+               placeholder="Customer name" required>
+        <p class="input-group">
+            <input type="text" name="title" placeholder="Billing date" ng-model="billingDate"
+                   required uib-datepicker-popup="dd.MM.yyyy" close-text="Close" is-open="datePicker.billingDateOpened"
+                   min-date="minDate" max-date="maxDate" ng-click="openBillingDatePicker()" readonly/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openBillingDatePicker()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+        <p class="input-group">
+            <input type="text" name="title" placeholder="Due date" ng-model="dueDate"
+                   required uib-datepicker-popup="dd.MM.yyyy" close-text="Close" is-open="datePicker.dueDateOpened"
+                   min-date="minDueDate" max-date="maxDate" ng-click="openDueDatePicker()" readonly/>
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="openDueDatePicker()"><i
+                    class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+        <input type="text" name="price" placeholder="Amount" ng-model="amount" required>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" name="button" class="modal-btn-full" ng-click="createInvoice()">Create</button>
+</div>

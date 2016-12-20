@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header">End negotiation
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="description">
+        Are you sure you want to end the discussion? You will not be able to send any message about this order
+        afterwards.
+    </div>
+    <form ng-submit="submit();">
+        <div class="form-input">
+            <label>Reason for cancelation</label>
+                      <textarea cols="40" ng-model="$parent.message"
+                                name="message"
+                                required
+                                placeholder="Type message..."
+                                rows="8"></textarea>
+
+        </div>
+        <button class="modal-btn-full red-button" name="button"
+                type="submit">End
+        </button>
+    </form>
+
+</div>

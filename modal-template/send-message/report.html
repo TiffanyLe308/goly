@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 ng-if="params.role === 'USER'"
+        class="modal-title underline-style-section-header">
+        Report provider
+        <div></div>
+    </h3>
+    <h3 ng-if="params.role === 'SHOP'"
+        class="modal-title underline-style-section-header">
+        Report customer
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="description">
+        In case of
+        <span ng-show="role === 'USER'">service provider</span>
+        <span ng-show="role === 'SHOP'">customerr</span>
+        not following the agreement, you can report
+        to Goly. We will look into the matter.
+    </div>
+
+    <form ng-submit="submit();">
+        <div class="form-input">
+            <label>Reason for report</label>
+                      <textarea cols="40" ng-model="$parent.message"
+                                name="message"
+                                required
+                                placeholder="Type message..."
+                                rows="8"></textarea>
+
+        </div>
+
+        <button class="modal-btn-full red-button" name="button"
+                type="submit">Send report
+        </button>
+    </form>
+</div>

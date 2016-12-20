@@ -1,0 +1,107 @@
+<div class="app-page search-page">
+    <header main-nav hide-search-bar="true"></header>
+
+    <div class="app-content search">
+        <div class="search-field">
+            <form ng-Submit="filterSearch()">
+                <input name="searchText" ng-blur="filterSearch()"
+                       ng-model="searchText" placeholder="Search for...">
+                <button type="submit" ng-click="filterSearch()"><img src="/images/search_dark.png"></button>
+            </form>
+            <button class="filter-button" ng-click="toggleFilter()" ng-show="searchMode.service"><img
+                    src="/images/filter.png"></button>
+        </div>
+        <div class="goly-secondary-menu">
+            <div ng-click="switchMode('service')" ng-class="searchMode.service ? 'goly-secondary-menu-active' : ''">
+                Services
+            </div>
+            <div ng-click="switchMode('provider')" ng-class="searchMode.provider ? 'goly-secondary-menu-active' : ''">
+                Shops
+            </div>
+        </div>
+        <div class="search-content-wrap">
+            <div class="search-sidebar" ng-class="filterIsShowing ? 'search-sidebar-show' : ''"
+                 ng-if="searchMode.service">
+                <form ng-Submit="filterSearch()" class="form-input">
+                    <label class="explore-sidebar-filters-label">Price</label>
+                    <div class="search-filters-price-wrap">
+                        <div>
+                            <input class="explore-sidebar-price-min" name="name"
+                                   ng-model="$parent.minPrice" placeholder="Minimum" type="number"></div>
+                        <p>
+                            -
+                        </p>
+                        <div>
+                            <input class="explore-sidebar-price-max" name="name" ng-blur="filterSearch()"
+                                   ng-model="$parent.maxPrice" placeholder="Maximum" type="number"></div>
+                    </div>
+                    <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+                </form>
+
+                <form ng-Submit="filterSearch()" class="form-input">
+                    <label class="explore-sidebar-filters-label">Location</label>
+                    <input placeholder="City, area" ng-model="$parent.city" ng-blur="filterSearch()"
+                           ng-autocomplete
+                           options="locationOptions">
+                    <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+                </form>
+
+                <form ng-Submit="filterSearch()" class="form-input">
+                    <label class="explore-sidebar-filters-label">Type of event</label>
+                    <select class="select-event-type" ng-model="$parent.eventType" ng-change="filterSearch()">
+                        <option value="">All types of event</option>
+                        <option disabled>---------------------</option>
+                        <option value="{{eventTypeTag}}" ng-repeat="eventTypeTag in eventTypeTags">
+                            {{eventTypeTag}}
+                        </option>
+                    </select>
+                </form>
+
+                <div class="form-input">
+                    <label class="explore-sidebar-filters-label">Category</label>
+                    <uib-accordion close-others="true">
+                        <uib-accordion-group ng-repeat="category in categories | filter:{visibleToSS: true}"
+                                             ng-click="selectCategory(category.category)"
+                                             ng-init="status.open = isSelectedCategory(category.category.id)"
+                                             is-open="status.open">
+                            <uib-accordion-heading>{{category.category.name}}</uib-accordion-heading>
+
+                            <label ng-repeat="subCategory in category.listSubCategory | filter:{visibleToSS: true}"
+                                   ng-click="filterSearch(subCategory.id)"
+                                   class="clickable"
+                                   ng-class="{'selected-subcategory': isSelectedSubCategory(subCategory.id)}">
+                                {{subCategory.name}}
+                            </label>
+                        </uib-accordion-group>
+                    </uib-accordion>
+                </div>
+
+            </div>
+            <div class="search-result-wrap" ng-class="filterIsShowing ? 'search-result-wrap-hide' : ''">
+                <div class="no-results" ng-show="!services.length && !providers.length && initialised">
+                    No results found
+                </div>
+                <div class="search-result-container" ng-show="initialised">
+                    <div class="search-result-service-wrap" ng-show="searchMode.service">
+                        <service-fragment ng-repeat="service in services"
+                                          service="service"
+                                          buttons="serviceButtons">
+                        </service-fragment>
+                    </div>
+                    <div class="search-result-provider-wrap" ng-show="searchMode.provider">
+                        <shop-fragment ng-repeat="provider in providers"
+                                       shop="provider">
+                        </shop-fragment>
+                    </div>
+                    <div class="pagination-wrap" ng-show="initialised && (totalRecord>50)">
+                        <uib-pagination total-items="totalRecord" ng-model="currentPage" direction-links="false"
+                                        max-size="5"
+                                        class="pagination-md" boundary-links="true" items-per-page="50"
+                                        ng-change="changePage()"
+                                        force-ellipses="true"></uib-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

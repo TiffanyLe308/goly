@@ -1,0 +1,155 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">
+        Payment
+        <div></div>
+    </h3>
+</div>
+
+
+<div class="modal-body">
+
+    <div class="payment-container">
+
+        <div class="summary-container">
+            <div class="summary-header">Summary</div>
+            <div class="payment-row">
+                <div class="title">Service price</div>
+                <div class="content">
+                    {{order.orderPrice.price | currency: order.orderPrice.currencySign : 2}}
+                </div>
+
+            </div>
+            <div class="payment-row">
+                <div class="title">Service Handling fee</div>
+                <div class="content">
+                    {{order.orderPrice.serviceFee | currency: order.orderPrice.currencySign : 2}}
+                </div>
+            </div>
+
+            <div class="goly-points">
+                <div id="goly-points-checkbox-wrap">
+                    <input name="cancelation" type="checkbox"
+                           ng-click="switchUsingGolyPoint()"
+                           aria-label="Redeem goly points" ng-disabled="directPayment ? 'disabled' : ''"/>
+                    Redeem goly points
+                </div>
+                <label ng-show="directPayment" class="warning">Not applicable if pay with cash/direct
+                    payment</label>
+                <div ng-show="usingGolyPoints" class="number-of-points">
+                    You have {{golyPoint.currentPoint}} goly points available. Enter amount of points
+                    you want to redeem.
+
+                    <form ng-submit="getGolyPointValue()">
+                        <label>Number of points</label>
+                        <input name="golyPoints" type="number"
+                               min="0"
+                               ng-model="golyPointsAmount"
+                               aria-label="Number of goly points"
+                               ng-blur="getGolyPointValue()"/>
+                    </form>
+
+
+                </div>
+            </div>
+
+            <div class="payment-row" ng-show="usingGolyPoints">
+                <div class="title">Goly point discount</div>
+                <div class="content">
+                    {{pointValue | currency: order.orderPrice.currencySign : 2}}
+                </div>
+            </div>
+
+            <div class="payment-row">
+                <div class="title">Total amount</div>
+                <div class="content">
+                    {{total | currency: order.orderPrice.currencySign : 2}}
+                </div>
+            </div>
+        </div>
+        <div class="payment-methods">
+            <uib-accordion close-others="oneAtATime" ng-click="changePaymentMethod()">
+
+                <!-- myPaga-->
+
+                <uib-accordion-group close-others="oneAtATime">
+                    <uib-accordion-heading>
+                        <i class="fa fa-credit-card"></i> Pay with myPaga
+                    </uib-accordion-heading>
+                    <form action="post" id="paga_epay" mixpanel-trigger="submit" mixpanel-event="ORDER > PAY"
+                          track-method="MyPaga" track-service-name="{{order.serviceName}}"
+                          track-shop-name="{{order.shopName}}">
+                        <input type="hidden" name="customer_account"
+                               value="{{order.id}}//{{golyPointsAmount}}"/>
+                        <input type="hidden" name="invoice"
+                               value="{{order.id}}">
+                        <input type="hidden" name="subtotal"
+                               value="{{total}}"/>
+                        <input type="hidden" name="description"
+                               value="{{order.descriptionDetail}}"/>
+                        <input type="hidden" name="product_code"
+                               value="{{order.serviceName}}"/>
+                        <input type="hidden" name="return_url"
+                               value="{{PAGA_RETURN_URL}}"/>
+                        <input type="hidden" name="test"
+                               value="true"/>
+                    </form>
+                    <script type="text/javascript-lazy"
+                            src="https://www.mypaga.com/paga-web/epay/ePay-button.paga?k=8637e8f9-846a-4def-ac51-ce38cab501b8&amp;e=false">
+
+                    </script>
+                </uib-accordion-group>
+
+                <!-- interswitch-->
+
+                <uib-accordion-group>
+                    <uib-accordion-heading>
+                        <i class="fa fa-credit-card"></i> Pay with ATM/Debit/Credit Card
+                    </uib-accordion-heading>
+                    <form action="https://webpay.interswitchng.com/paydirect/pay" method="post"
+                          mixpanel-trigger="submit" mixpanel-event="ORDER > PAY" track-method="Interswitch"
+                          track-service-name="{{order.serviceName}}" track-shop-name="{{order.shopName}}">
+                        <img src="/images/isw_logo_new_combined_2.png" style="width: 100%">
+                        <input name="product_id" type="hidden" value="{{interSwitchSetting.INTERSWITCH_PRODUCT_ID}}"/>
+                        <input name="pay_item_id" type="hidden" value="{{interSwitchSetting.INTERSWITCH_PAY_ITEM_ID}}"/>
+                        <input name="amount" type="hidden" value="{{interSwitchSetting.INTERSWITCH_AMOUNT}}"/>
+                        <input name="currency" type="hidden" value="566"/>
+                        <input name="site_redirect_url" type="hidden" value="{{INTERSWITCH_RETURN_URL}}"/>
+                        <input name="txn_ref" type="hidden" value="{{interSwitchSetting.INTERSWITCH_TXNREF}}"/>
+                        <input name="cust_name" type="hidden" value="{{interSwitchSetting.customerName}}"/>
+                        <input name="cust_id" type="hidden" value="{{interSwitchSetting.customerId}}"/>
+                        <input name="hash" type="hidden"
+                               value="{{interSwitchSetting.INTERSWITCH_HASH}}"/>
+
+                        <input type="submit" value="Proceed"
+                               ng-click="recordInterSwitchTransaction(interSwitchSetting.INTERSWITCH_TXNREF)"/>
+                    </form>
+                </uib-accordion-group>
+
+                <uib-accordion-group close-others="oneAtATime" is-open="$parent.directPayment"
+                                     ng-if="global.isPlus(shop)">
+                    <uib-accordion-heading>
+                        <i class="fa fa-money"></i> Pay with cash/Direct payment
+                    </uib-accordion-heading>
+                    <div>
+                        <p>
+                            By selecting this payment method, you confirm that you accept the offer from the service
+                            provider and agree to pay the amount of <strong>{{total | currency:
+                            order.orderPrice.currencySign : 2}}</strong>
+                            for the service.</p>
+                        <p>
+                            You can contact the service provider and pay directly for the service.<br/>
+                        </p>
+                        <input type="button" value="Proceed" ng-click="payWithCash()"/>
+                    </div>
+                </uib-accordion-group>
+
+            </uib-accordion>
+
+        </div>
+
+    </div>
+
+</div>

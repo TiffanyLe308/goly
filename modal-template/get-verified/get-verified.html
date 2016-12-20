@@ -1,0 +1,121 @@
+<div ng-hide="verifyingEmail || verifyingBusiness">
+    <div class="modal-header">
+        <div aria-label="Close" class="close" ng-click="close();" type="button">
+            <span aria-hidden="true">&times;</span>
+        </div>
+        <h3 class="modal-title underline-style-section-header" id="myModalLabel">Get verified
+            <div></div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        Verify your account with the following methods to get verified badge to your shop.
+        <div class="get-verified-method-wrap">
+            <div class="get-verified-method-name-and-icon">
+                <img alt="" src="/images/phone_dark.png"/>
+                <p>
+                    Phone
+                </p>
+            </div>
+            <button class="verified-method-btn">Verified</button>
+        </div>
+
+        <div class="get-verified-method-wrap">
+            <div class="get-verified-method-name-and-icon">
+                <img alt="" src="/images/email_dark.png"/>
+                <p>
+                    Email
+                </p>
+            </div>
+            <button class="verify-method-btn" ng-if="!isVerifyEmail" ng-click="sendVerifyEmail()">Verify
+            </button>
+            <button class="verified-method-btn" ng-if="isVerifyEmail">Verified</button>
+        </div>
+
+        <div class="get-verified-method-wrap">
+            <div class="get-verified-method-name-and-icon">
+                <img alt="" src="/images/facebook_dark.png"/>
+                <p>
+                    Facebook
+                </p>
+            </div>
+            <button class="verify-method-btn" ng-if="!isVerifyFB" ng-click="registerWithFB()">Verify
+            </button>
+            <button class="verified-method-btn" ng-if="isVerifyFB">Verified</button>
+        </div>
+
+        <div class="get-verified-method-wrap">
+            <div class="get-verified-method-name-and-icon">
+                <img alt="" src="/images/business_icon_dark.png"/>
+                <p>
+                    Business
+                </p>
+            </div>
+            <button class="verify-method-btn" ng-if="!isVerifyBussinessId && !isPendingVerifyBusiness"
+                    ng-click="triggerVerifyingBusiness()">
+                Verify
+            </button>
+            <button class="verify-method-btn" ng-if="!isVerifyBussinessId && isPendingVerifyBusiness"
+                    ng-click="triggerVerifyingBusiness()">
+                Pending
+            </button>
+            <button class="verified-method-btn" ng-if="isVerifyBussinessId">Verified</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Email verification message -->
+<div ng-if="verifyingEmail">
+    <div class="modal-header">
+        <div aria-label="Close" class="close" ng-click="close();" type="button">
+            <span aria-hidden="true">&times;</span>
+        </div>
+        <h3 class="modal-title underline-style-section-header" id="myModalLabel">Email verification
+            <div></div>
+        </h3>
+    </div>
+
+    <div class="modal-body">
+        We have sent you an email with a verification link to {{email}}. Remember to check your Spam box as well. Please
+        verify your email by opening the link.
+    </div>
+
+    <div class="modal-footer">
+        <button class="modal-btn-full" ng-click="close()" name="button" type="button">Done</button>
+    </div>
+
+</div>
+
+<!-- Business verification -->
+<div ng-if="verifyingBusiness">
+    <div class="modal-header">
+        <div aria-label="Close" class="close" ng-click="close();" type="button">
+            <span aria-hidden="true">&times;</span>
+        </div>
+        <h3 class="modal-title underline-style-section-header" id="myModalLabel">Verify your business
+            <div></div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <p>To get verified, please follow the instruction belows:</p>
+        <ol>
+            <li>Upload a scanned document of your official proof of identification (ID card, driver's license, or
+                international passport)
+            </li>
+            <li>We will call you you between 9:00 - 17:00 during week days to verify your business</li>
+        </ol>
+
+        <div ng-if="idUploaded">
+            <img ng-src="{{businessIdUrl}}" width="100%">
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button class="modal-btn-full" type="file" accept="image/*" ngf-max-size="5MB" ngf-select="uploadId($file)"
+                ng-if="!idUploaded">
+            Upload
+        </button>
+        <button class="modal-btn-full" ng-click="submitId()" name="button" type="button" ng-if="idUploaded">Submit
+        </button>
+    </div>
+</div>

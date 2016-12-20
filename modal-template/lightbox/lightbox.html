@@ -1,0 +1,62 @@
+<div class="modal-body modal-lightbox"
+     ng-swipe-left="Lightbox.nextImage()"
+     ng-swipe-right="Lightbox.prevImage()">
+    <!-- navigation -->
+    <div class="lightbox-nav">
+        <!-- close button -->
+        <div type="button" class="close" ng-click="$dismiss()" data-dismiss="modal" aria-label="Close"><span
+                aria-hidden="true">&times;</span></div>
+
+        <!--<div class="btn-group" ng-if="Lightbox.images.length > 1">-->
+        <!--<a class="btn btn-xs btn-default" ng-click="Lightbox.prevImage()">-->
+        <!--‹ Previous-->
+        <!--</a>-->
+
+        <!--<a class="btn btn-xs btn-default" ng-click="Lightbox.nextImage()">-->
+        <!--Next ›-->
+        <!--</a>-->
+        <!--</div>-->
+    </div>
+
+    <div class="lightbox-image-container">
+        <!-- caption -->
+        <div class="lightbox-image-caption">
+            <span>{{Lightbox.imageCaption}}</span>
+        </div>
+        <h4 ng-hide="Lightbox.imageUrl">Loading image..</h4>
+
+        <a class="left carousel-control" ng-if="Lightbox.images.length > 1"
+           ng-click="Lightbox.prevImage();Lightbox.imageUrl = null;" style="background: none">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        </a>
+        <a class="right carousel-control" ng-if="Lightbox.images.length > 1"
+           ng-click="Lightbox.nextImage();Lightbox.imageUrl = null;" style="background: none">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        </a>
+
+        <!-- image -->
+        <img ng-if="!Lightbox.isVideo(Lightbox.image)"
+             lightbox-src="{{Lightbox.imageUrl}}">
+
+        <!-- video -->
+        <div ng-if="Lightbox.isVideo(Lightbox.image)"
+             class="embed-responsive embed-responsive-16by9">
+            <!-- video file embedded directly -->
+            <video ng-if="!Lightbox.isSharedVideo(Lightbox.image)"
+                   lightbox-src="{{Lightbox.imageUrl}}"
+                   controls
+                   autoplay="true">
+            </video>
+
+            <!-- video embedded with an external service using
+                 `ng-videosharing-embed` -->
+            <embed-video ng-if="Lightbox.isSharedVideo(Lightbox.image)"
+                         lightbox-src="{{Lightbox.imageUrl}}"
+                         ng-href="{{Lightbox.imageUrl}}"
+                         iframe-id="lightbox-video"
+                         class="embed-responsive-item">
+                <a ng-href="{{Lightbox.imageUrl}}">Watch video</a>
+            </embed-video>
+        </div>
+    </div>
+</div>

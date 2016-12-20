@@ -1,0 +1,42 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">
+        Recommend
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body recommend-modal">
+	<div class="goly-secondary-menu" role="tablist" ng-init="tab = 'providers'">
+        <div role="presentation" ng-class="tab == 'providers' ? 'goly-secondary-menu-active' : ''">
+            <a href="#providers" aria-controls="providers" role="tab" data-toggle="tab" ng-click="tab = 'providers'">Providers</a></div>
+        <div role="presentation" ng-class="tab == 'services' ? 'goly-secondary-menu-active' : ''">
+            <a href="#services" aria-controls="services" role="tab" data-toggle="tab" ng-click="tab = 'services';">Services</a>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="providers">
+            <div class="form-input search-box">
+                <input placeholder="Search.." ng-model="shopFilterText" maxlength="50" type="text">
+            </div>
+            <div class="recommend-list">
+                <shop-fragment ng-repeat="shop in listShops | filter: shopFilterText | orderBy: '-name'" shop="shop"
+                               compact="true" button="shopButton" disabled-link="true">
+                </shop-fragment>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="services">
+            <div class="form-input search-box">
+                <input placeholder="Search.." ng-model="serviceFilterText" maxlength="50" type="text">
+            </div>
+            <div class="recommend-list service-list">
+                <service-fragment ng-repeat="service in listServices | filter: serviceFilterText | orderBy: '-name'"
+                                  service="service" buttons="serviceButton" disabled-link="true">
+                </service-fragment>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <div aria-label="Close" class="close" ng-click="close();" type="button">
+        <span aria-hidden="true">&times;</span>
+    </div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Invite Friends
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body modal-invite-friends">
+    <label>Invite a friend and get 200 Naira for yourself and your friend when they make their first order</label>
+    <label>And get 600 Naira from the first transaction of a service provider you invite.</label>
+
+    <h4>Share link</h4>
+    <div class="invitation-link" id="invitation-link">{{link}}</div>
+    <div class="share-buttons-container">
+        <a class="btn btn-copy btn-share" ng-click="copyLink()">
+            <i class="fa fa-link fa-button-icon"></i>Copy link
+        </a>&nbsp;
+        <div class="btn-group" uib-dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-share btn-success" uib-dropdown-toggle ng-disabled="disabled">
+                <i class="fa fa-share fa-button-icon"></i>Share
+            </button>
+            <ul class="dropdown-menu dropdown-social-share" uib-dropdown-menu role="menu"
+                aria-labelledby="single-button">
+                <li role="menuitem">
+                    <a target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u={{link}}"
+                       mixpanel-trigger="click" mixpanel-event="USER > INVITE" track-method="Facebook">
+                        <i class="fa fa-facebook"></i> Facebook
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a target="_blank"
+                       ng-href="https://twitter.com/home?status=Join me on Goly and earn up to N600 {{link}}"
+                       mixpanel-trigger="click" mixpanel-event="USER > INVITE" track-method="Twitter">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                </li>
+                <li role="menuitem" class="mobile-device-only">
+                    <a target="_blank" ng-href="whatsapp://send?text=Join me on Goly and earn up to N600 {{link}}"
+                       mixpanel-trigger="click" mixpanel-event="USER > INVITE" track-method="Whatsapp">
+                        <i class="fa fa-whatsapp"></i> Whatsapp
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

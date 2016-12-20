@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 ng-if="params.role === 'USER'"
+        class="modal-title underline-style-section-header">
+        Confirm completion
+        <div></div>
+    </h3>
+    <h3 ng-if="params.role === 'SHOP'"
+        class="modal-title underline-style-section-header">
+        Mark completed
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body" ng-if="params.role === 'USER'">
+    <form ng-submit="submit();">
+        <div class="description">
+            Confirm service completion. If your service was carried out as agreed with provider.
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn-full" name="button"
+                    ng-click="sendMessage('CONFIRM');"
+                    type="submit">Confirm
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="modal-body" ng-if="params.role === 'SHOP'">
+    <div class="description">
+        Mark service completed. Once the customer confirms service completion. Your outstanding money for the service
+        will be sent to you.
+    </div>
+    <div class="modal-footer">
+        <button ng-click="submit();" class="modal-btn-full"
+                name="button"
+                type="submit">Mark completed
+        </button>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="modal-header">
+    <div aria-label="Close" class="close" ng-click="close()" type="button">
+        <span aria-hidden="true">&times;</span>
+    </div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Add payment
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="add-service-info-wrap">
+        <input name="title" placeholder="Amount" ng-model="amount" required type="text">
+        <p class="input-group">
+            <input type="text" name="title" placeholder="Payment date" ng-model="paymentDate"
+                   required uib-datepicker-popup="dd.MM.yyyy" close-text="Close" is-open="datePicker.opened"
+                   min-date="minDate" max-date="maxDate" ng-click="openDatePicker()" readonly/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openDatePicker()"><i
+                        class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+        </p>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="modal-btn-full" name="button" type="button" ng-click="addPayment()">Add</button>
+</div>

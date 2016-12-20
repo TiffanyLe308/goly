@@ -1,0 +1,77 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">
+        Send service request
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+
+    <form ng-submit="send();">
+        <div class="modal-body">
+
+            <div class="form-input">
+                <label>Location</label>
+                <input placeholder="Where do you need the service?"
+                       ng-autocomplete
+                       ng-model="location"
+                       options="options"
+                       type="text"
+                       name="location">
+            </div>
+
+
+            <div class="form-input">
+                <label>Date</label>
+                <div class="input-group">
+                    <input type="text" name="title"
+                           placeholder="When do you need the service?"
+                           ng-model="bookingDate"
+                           required uib-datepicker-popup="dd.MM.yyyy"
+                           close-text="Close" is-open="datePicker.opened"
+                           min-date="minDate" max-date="maxDate"
+                           ng-click="openDatePicker()" readonly/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="openDatePicker()"><i
+                                class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                      </span>
+                </div>
+            </div>
+
+            <div class="form-input">
+                <label>How many people are coming to your event? (Optional)</label>
+                <input type="text" name="title" placeholder="E.g. 30-50 people"
+                       ng-model="attendees">
+            </div>
+
+            <div class="form-input">
+                <label>What type of event are you organizing? (Optional)</label>
+                <input type="text" name="title" placeholder="E.g. Wedding, Birthday Party, Anniversary"
+                       ng-model="eventType">
+            </div>
+
+            <div class="form-input">
+                <label>What is your budget for this service? (Optional)</label>
+                <input type="text" name="title" placeholder="E.g ₦150,000 – ₦200,000"
+                       ng-model="budget">
+            </div>
+
+            <div class="form-input">
+                <label>Tell the service provider more about your request</label>
+                    <textarea placeholder="More information for service provider"
+                              ng-model="message" required
+                              name="message"></textarea>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="modal-btn-full" name="button"
+                    type="submit">Send
+            </button>
+        </div>
+    </form>
+</div>

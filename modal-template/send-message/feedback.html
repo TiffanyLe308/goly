@@ -1,0 +1,60 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header">Rate and review
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+
+    <form ng-submit="submit();">
+        <div class="form-input">
+            <label>Service quality</label>
+            <uib-rating max="5"
+                        on-hover="hoveringOver(value)"
+                        ng-model="$parent.qualityValue"
+                        aria-labelledby="default-rating"></uib-rating>
+
+        </div>
+        <div class="form-input">
+            <label>Value for money</label>
+            <uib-rating max="5"
+                        on-hover="hoveringOver(value)"
+                        ng-model="$parent.moneyValue"
+                        aria-labelledby="default-rating"></uib-rating>
+
+        </div>
+        <div class="form-input">
+            <label>Communication skills</label>
+            <uib-rating max="5"
+                        ng-model="$parent.skillValue"
+                        aria-labelledby="default-rating"></uib-rating>
+
+        </div>
+        <div class="form-input">
+            <label>Feedback (private)</label>
+             <textarea cols="40" ng-model="$parent.message"
+                       name="message"
+                       required
+                       placeholder="Send private feedback to seller"
+                       rows="8"></textarea>
+
+        </div>
+        <div class="form-input">
+            <label>Review</label>
+            <textarea cols="40" ng-model="$parent.review"
+                      name="message"
+                      required
+                      placeholder="Write review"
+                      rows="8"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn-full"
+                    name="button"
+                    type="submit">Submit
+            </button>
+        </div>
+    </form>
+
+</div>

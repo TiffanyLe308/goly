@@ -1,0 +1,70 @@
+<div ng-if="!SMSCodeSent">
+    <div class="modal-header">
+        <div aria-label="Close" class="close" ng-click="close();" type="button">
+            <span aria-hidden="true">&times;</span>
+        </div>
+        <h3 class="modal-title underline-style-section-header" id="myModalLabel">Change phone number
+            <div></div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <label class="error">
+            You will need to log in again after changing your phone number.
+        </label>
+        <div class="form-input">
+            <label ng-show="!(changeNumberForm.phoneNumber.$touched && changeNumberForm.phoneNumber.$error.required)">Phone
+                number</label>
+            <label class="error"
+                   ng-show="changeNumberForm.phoneNumber.$touched && changeNumberForm.phoneNumber.$error.required">
+                Phone number is required
+            </label>
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button aria-expanded="false" aria-haspopup="true" class="btn btn-default dropdown-toggle"
+                            data-toggle="dropdown" type="button">
+                        {{newCountry}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="(countryCode, supportCountry) in supportCountries">
+                            <a ng-click="$parent.newCountry = '+' + supportCountry.phoneCode;">
+                                ({{supportCountry.name}}) +{{supportCountry.phoneCode}}</a>
+                        <li>
+                    </ul>
+                </div>
+                <input name="phoneNumber"
+                       ng-class="{'error': changeNumberForm.phoneNumber.$touched && changeNumberForm.phoneNumber.$error.required}"
+                       ng-model="$parent.newPhoneNumber" placeholder="" required type="number"/>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="modal-btn-full" ng-click="changePhoneNumber()" ng-disabled="newPhoneNumber == currentNumber">
+            Change
+        </button>
+    </div>
+</div>
+
+<div ng-if="SMSCodeSent">
+    <div class="modal-header">
+        <div aria-label="Close" class="close" ng-click="close();" type="button">
+            <span aria-hidden="true">&times;</span>
+        </div>
+        <h3 class="modal-title underline-style-section-header" id="myModalLabel">Verify phone number
+            <div></div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        A verification code has been sent to {{$parent.newCountry+$parent.newPhoneNumber}}. Please enter the code below
+        to confirm your number.
+        <div class="form-input">
+            <input ng-model="SMSCode" placeholder="Enter verification code">
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="modal-btn-full" ng-click="confirmSMSCode(SMSCode)" ng-disabled="!SMSCode">Confirm
+        </button>
+    </div>
+</div>

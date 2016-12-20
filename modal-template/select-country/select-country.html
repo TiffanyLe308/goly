@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Please select your country
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="country-container">
+        <div class="country clickable" ng-click="selectCountry(countryCode)"
+             ng-repeat="(countryCode, country) in supportCountries">
+            <img ng-src="/images/flags/{{countryCode}}.png">
+            <span>{{country.name}}</span>
+        </div>
+    </div>
+</div>

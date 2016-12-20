@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" aria-label="Close"><span aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">{{modal_title}}
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+
+    <div class="add-service-info-wrap">
+        <div class=""><label>Name</label></div>
+        <input class="half-input-left" type="text" name="title" ng-model="firstName" placeholder="First name" required>
+        <input class="half-input-right" type="text" name="title" ng-model="lastName" placeholder="Last name" required>
+
+        <!-- <label>Address</label>
+        <input type="text" name="price" placeholder="Street" required>
+        <input class="half-input-left" type="text" name="title" placeholder="City" required>
+        <input class="half-input-right" type="text" name="title" placeholder="Post code" required>
+        <input class="half-input-left" type="text" name="title" placeholder="State" required>
+        <input class="half-input-right" type="text" name="title" placeholder="Country" required> -->
+
+        <label>Account</label>
+        <input type="text" name="title" placeholder="Bank name" ng-model="bankName" ng-bind="bankName" required>
+        <input type="text" name="title" placeholder="Account number" ng-model="bankAccount" ng-bind="bankAccount"
+               required>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button type="button" name="button" class="modal-btn-full" ng-click="save()">Save</button>
+</div>

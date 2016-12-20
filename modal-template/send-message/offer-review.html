@@ -1,0 +1,82 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header">
+        Review offer
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+
+    <div class="review">
+        <div class="review-row">
+            <div class="title">Service</div>
+            <div class="content">{{$parent.params.order.serviceName}}</div>
+
+        </div>
+
+        <div class="review-row">
+            <div class="title">Seller</div>
+            <div class="content">{{$parent.params.order.shopName}}</div>
+
+        </div>
+        <div class="review-row">
+            <div class="title">Date</div>
+            <div class="content">{{$parent.params.order.bookedDate |
+                date:'dd MMM yyyy'}}
+            </div>
+
+        </div>
+
+        <div class="review-row">
+            <div class="title">Location</div>
+            <div class="content">{{$parent.params.order.location}}</div>
+
+        </div>
+
+        <div class="review-row">
+            <div class="title">Price</div>
+
+            <div class="content">
+
+                <div class="price-calculation">
+                    <div class="price-row"><span
+                            class="text">Service price</span>
+                        <span class="price">{{order.orderPrice.finalPrice | currency: order.orderPrice.currencySign : 2}}</span>
+                    </div>
+                    <div class="price-row"><span
+                            class="text">Total cost</span>
+                        <span class="price">{{order.orderPrice.chargeAmount | currency: order.orderPrice.currencySign : 2}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-row">
+            <div class="title">Cancelation terms</div>
+            <div class="content" ng-if="!$parent.params.order.allowCancelation">Cancelation is not allowed</div>
+            <div class="content" ng-if="$parent.params.order.allowCancelation">
+                <span ng-if="$parent.params.order.cancelationFeePercentage">Cancelation fee: {{order.cancelationFeePercentage}}%
+                            ({{(order.orderPrice.price * order.cancelationFeePercentage / 100).toFixed(2) | currency:
+                            order.orderPrice.currencySign}})</span>
+                <span ng-if="!$parent.params.order.cancelationFeePercentage">No cancelation fee</span>
+
+                <br/>
+                No cancelation after {{$parent.params.order.deadlineCancelation | date:'dd.MM.yyyy'}}
+            </div>
+        </div>
+
+        <div class="review-row">
+            <div class="title">Additional info</div>
+            <div class="content long-text">
+                {{$parent.params.order.descriptionDetail}}
+            </div>
+        </div>
+    </div>
+
+    <button class="modal-btn-full" name="button" ng-click="submit();"
+            type="submit" mixpanel-trigger="click" mixpanel-event="ORDER > PROCEED TO PAY">
+        Proceed to pay
+    </button>
+</div>

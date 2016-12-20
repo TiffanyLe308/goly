@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <div aria-label="Close" class="close" ng-click="close();" type="button">
+        <span aria-hidden="true">&times;</span>
+    </div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Achieve more with plus
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div ng-show="unregistered">
+        <p>Please provide the information below and tick on the checkbox to proceed with the order.</p>
+        <div class="form-input">
+            <label>Full name</label>
+            <input type="text" maxlength="50" ng-model="name" required>
+        </div>
+        <div class="form-input">
+            <label>Email</label>
+            <input type="email" maxlength="50" ng-model="email" required>
+        </div>
+        <div class="form-input">
+            <label>Phone number</label>
+            <input type="text" maxlength="50" ng-model="phone" required>
+        </div>
+    </div>
+
+    <div class="form-input">
+        <div class="radio">
+            <label><input type="radio" name="optradio" ng-model="type" value="Monthly">Monthly subscription (₦6,000 /
+                month)</label>
+        </div>
+        <div class="radio">
+            <label><input type="radio" name="optradio" ng-model="type" value="Yearly">Yearly subscription (₦60,000 /
+                year)</label>
+        </div>
+    </div>
+
+    <div class="form-input">
+        <div class="checkbox">
+            <label><input type="checkbox" ng-model="confirmed"><strong>By checking this, you agree to the Terms of
+                Service of
+                Goly <i>Plus</i>. We will contact you within 1-2 working days to proceed with your
+                request.</strong></label>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" ng-if="!enableComparing">
+    <button class="modal-btn-full" ng-disabled="!confirmed" ng-click="getPlus()" type="button">
+        Get Plus
+    </button>
+</div>
+<div class="modal-footer" ng-if="enableComparing">
+    <a class="modal-btn-half button btn-default" ng-href="/plus" type="button" ng-click="close();">
+        Learn more
+    </a>
+    <button class="modal-btn-half" ng-disabled="!confirmed" ng-click="getPlus()" type="button">
+        Get Plus
+    </button>
+</div>

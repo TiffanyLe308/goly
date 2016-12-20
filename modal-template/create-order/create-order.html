@@ -1,0 +1,74 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span aria-hidden="true">&times;</span></div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">
+        Service request
+        <div></div>
+    </h3>
+
+</div>
+<div class="modal-body" ng-show="disableOrder !== true">
+
+    <form ng-submit="send();">
+
+        <div class="add-service-info-wrap">
+            <div class="form-input">
+                <label>Where do you need the service?</label>
+                <input type="text" name="title" placeholder="E.g. the address of your event's location"
+                       ng-autocomplete
+                       options="options"
+                       ng-model="location" required>
+            </div>
+
+            <div class="form-input">
+                <label>When do you need the service?</label>
+                <div class="input-group">
+                    <input type="text" name="title" placeholder="E.g. the date your event happens"
+                           ng-model="$parent.bookingDate" required uib-datepicker-popup="dd.MM.yyyy"
+                           close-text="Close" is-open="datePicker.opened"
+                           min-date="minDate" max-date="maxDate" ng-click="openDatePicker()" readonly/>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="openDatePicker()"><i
+                                class="glyphicon glyphicon-calendar"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-input">
+                <label>How many people are coming to your event? (Optional)</label>
+                <input type="text" name="title" placeholder="E.g. 30-50 people"
+                       ng-model="attendees">
+            </div>
+
+            <div class="form-input">
+                <label>What type of event are you organizing? (Optional)</label>
+                <input type="text" name="title" placeholder="E.g. Wedding, Birthday Party, Anniversary"
+                       ng-model="eventType">
+            </div>
+
+            <div class="form-input">
+                <label>What is your budget for this service? (Optional)</label>
+                <input type="text" name="title" placeholder="E.g ₦150,000 – ₦200,000"
+                       ng-model="budget">
+            </div>
+
+            <div class="form-input">
+                <label>Tell the service provider more about your request</label>
+                <textarea name="name" rows="8" cols="40" required
+                          placeholder="More information for service provider"
+                          ng-model="message"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" name="button" class="modal-btn-full">Send
+            </button>
+        </div>
+
+    </form>
+
+
+</div>
+<div class="modal-body" ng-show="disableOrder">
+    You cannot order from your own service!
+</div>

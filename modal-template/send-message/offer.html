@@ -1,0 +1,197 @@
+<div class="modal-header">
+    <div type="button" class="close" ng-click="close()" data-dismiss="modal"
+         aria-label="Close"><span
+            aria-hidden="true">&times;</span></div>
+    <h3 ng-if="!params.change"
+        class="modal-title underline-style-section-header">
+        Make an offer
+        <div></div>
+    </h3>
+    <h3 ng-if="params.change"
+        class="modal-title underline-style-section-header">
+        Change offer
+        <div></div>
+    </h3>
+</div>
+<!--MAKE OFFER-->
+<div class="modal-body" ng-if="!offerReview">
+    <form ng-submit="submitOrder();">
+        <div class="form-input">
+            <label>Price</label>
+            <div class="input-group">
+                <span class="input-group-addon">{{order.orderPrice.currencySign}}</span>
+                <input placeholder="Enter amount" type="number" ng-blur="getPayoutAmount()"
+                       ng-model="$parent.amount" required step="0.01"
+                       name="Price">
+            </div>
+
+            <div class="price-calculation">
+                <div class="price-row"><span
+                        class="text">Handling fee</span>
+                    <span class="price">{{$parent.handlingFee | currency: order.orderPrice.currencySign : 2}}</span>
+                </div>
+                <div class="price-row"><span
+                        class="text">You will receive</span>
+                    <span class="price">{{$parent.payoutAmount | currency: order.orderPrice.currencySign : 2}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-input">
+            <label>Date</label>
+            <div class="input-group">
+                <input type="text" name="title"
+                       placeholder="Booking date"
+                       ng-model="$parent.bookingDate"
+                       required uib-datepicker-popup="dd.MM.yyyy"
+                       close-text="Close" is-open="$parent.datePicker.opened"
+                       min-date="$parent.minDate" max-date="$parent.maxDate"
+                       ng-click="$parent.openDatePicker()" readonly/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="openDatePicker()"><i
+                                class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                      </span>
+            </div>
+        </div>
+
+
+        <div class="form-input">
+            <label>Location</label>
+            <input placeholder="City, country"
+                   ng-autocomplete
+                   ng-model="$parent.location"
+                   options="options"
+                   type="text"
+                   required
+                   name="location">
+        </div>
+
+        <div class="form-input">
+            <label>Additional info</label>
+                      <textarea cols="40" ng-model="$parent.message"
+                                name="message"
+                                required
+                                placeholder="Type message..."
+                                rows="8"></textarea>
+        </div>
+
+        <button class="modal-btn-full" name="button"
+                type="submit">
+            <span>Review</span>
+        </button>
+    </form>
+</div>
+
+<!--REVIEW OFFER-->
+<div class="modal-body" ng-if="offerReview">
+
+    <div class="review">
+        <div class="review-row">
+            <div class="title">Service</div>
+            <div class="content">{{$parent.params.order.serviceName}}</div>
+        </div>
+
+
+        <div class="review-row">
+            <div class="title">Customer</div>
+            <div class="content">{{$parent.params.order.userName}}</div>
+        </div>
+        <div class="review-row">
+            <div class="title">Date</div>
+            <div class="content">{{offer.bookingDate | date:'dd MMM yyyy'}}
+            </div>
+        </div>
+        <div class="review-row">
+            <div class="title">Location</div>
+            <div class="content">{{offer.location}}</div>
+        </div>
+
+        <div class="review-row">
+            <div class="title">Price</div>
+            <div class="content">
+                <div class="price-calculation">
+                    <div class="price-row"><span
+                            class="text">Customer will pay</span>
+                        <span class="price">{{$parent.amount | currency: order.orderPrice.currencySign : 2}}</span>
+                    </div>
+                    <div class="price-row"><span
+                            class="text">Handling fee</span>
+                        <span class="price">{{$parent.handlingFee | currency: order.orderPrice.currencySign : 2}}</span>
+                    </div>
+                    <div class="price-row"><span
+                            class="text">You will receive</span>
+                        <span class="price">{{$parent.payoutAmount | currency: order.orderPrice.currencySign : 2}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="review-row">
+            <div class="title">Additional info</div>
+            <div class="content long-text">{{offer.message}}</div>
+        </div>
+
+        <div class="review-row cancelation-row">
+            <div class="title">Cancelation</div>
+            <div class="content" ng-init="$parent.allowCancelation=false">
+                <div class="radio">
+                    <label><input name="cancelation" type="radio" ng-model="$parent.allowCancelation"
+                                  data-ng-value="false"
+                                  aria-label="Allow cancelation"/>Do not allow cancelation</label>
+                </div>
+                <div class="radio">
+                    <label><input name="cancelation" type="radio"
+                                  ng-model="$parent.allowCancelation"
+                                  data-ng-value="true"
+                                  aria-label="Charge cancelation fee"/>Allow cancelation</label>
+                </div>
+                <div ng-show="$parent.allowCancelation">
+                    <label>Percentage of the fee charged in cancelation</label>
+                    <div class="input-group">
+                        <input name="cancelation" type="number"
+                               ng-model="$parent.cancelationFeePercentage"
+                               placeholder="Cancelation fee %"
+                               aria-label="Charge cancelation fee" min="0" max="100"/>
+                        <span class="input-group-addon">
+                            {{(offer.price.price * $parent.cancelationFeePercentage  / 100) | currency: order.orderPrice.currencySign : 2}}
+                        </span>
+                    </div>
+                    <div class="form-input">
+                        <label>No cancelation after this date</label>
+                        <div class="input-group">
+                            <input type="text" name="title" required
+                                   placeholder="Specify a date"
+                                   ng-model="$parent.deadlineCancelation"
+                                   required uib-datepicker-popup="dd.MM.yyyy"
+                                   close-text="Close" is-open="$parent.datePicker.opened"
+                                   min-date="$parent.minDate" max-date="offer.bookingDate"
+                                   ng-click="$parent.openDatePicker()" readonly/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default"
+                                ng-click="openDatePicker()"><i
+                                class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                      </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="terms">
+            By sending this offer, you agree to our <a href="/terms" target="_blank">terms of use</a>
+        </div>
+
+        <button class="modal-btn back" name="button" ng-click="back();"
+                type="button">
+            <span>Back</span>
+        </button>
+
+        <button class="modal-btn send-offer" name="button" ng-click="submit();"
+                type="submit">
+            <span>Send offer</span>
+        </button>
+    </div>
+</div>

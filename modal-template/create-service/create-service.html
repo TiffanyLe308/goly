@@ -1,0 +1,80 @@
+<div ng-if="!SMSCodeSent">
+    <div class="modal-header">
+        <div aria-label="Close" class="close" data-dismiss="modal" ng-click="close();" type="button">
+            <span aria-hidden="true">&times;</span>
+        </div>
+        <h3 class="modal-title underline-style-section-header" id="myModalLabel">Add service
+            <div></div>
+        </h3>
+    </div>
+    <div class="modal-body">
+        <div class="add-service-img-wrap">
+            <div class="add-service-img" type="file" ngf-select="uploadFile($files)" accept="image/*"
+                 ngf-max-size="10MB"
+                 ng-if="availableSlotsToUploadPictures > 0 || isPlus" ngf-fix-orientation="true" multiple>
+                <div class="add-service-img-thumb clickable"
+                     style="background-image: url(/images/image_placeholder.png);">
+                </div>
+            </div>
+            <div class="add-service-img" ng-repeat="picture in service.pictures" ng-if="service.pictures">
+                <div class="add-service-img-thumb" style="background-image: url({{getThumbnail(picture)}});">
+                    <div class="add-service-img-remove-btn" ng-click="deleteFile(picture)">X</div>
+                </div>
+            </div>
+            <label ng-if="!isPlus">Note: You can upload maximum {{maxImageUpload}} images.</label>
+            <label class="upgrade-label" ng-if="!isPlus" ng-click="getPlus()">
+                Upgrade your shop to upload unlimited service images</label>
+        </div>
+
+        <div class="form-input">
+            <label>What kind of service do you provide</label>
+            <input name="title" ng-model="service.name" placeholder="Enter service name. Eg. Wedding photography"
+                   required type="text" maxlength="50">
+        </div>
+
+        <div class="form-input">
+            <label>Select a relevant category for this service</label>
+            <select ng-model="selectedCategory">
+                <option value="" disabled selected>Select a category</option>
+                <optgroup label="{{category.category.name}}" ng-repeat="category in categories">
+                    <option value="{{subCategory.id}}" ng-repeat="subCategory in category.listSubCategory">
+                        {{subCategory.name}}
+                    </option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="form-input">
+            <label>Write an attractive description for your service</label>
+            <textarea name="desc" ng-model="service.description"
+                      placeholder="Enter service description (max 500 characters)"
+                      maxlength="500" required></textarea>
+        </div>
+
+        <div class="form-input-price-discount-wrap">
+            <div class="form-input">
+                <label>What is the minimum price for this service</label>
+                <div class="price-icon-and-input-wrap">
+                    <div class="price-type-icon">{{currencySign}}</div>
+                    <input name="price" ng-model="service.price" placeholder="Enter price" required type="number">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-input">
+            <label>What types of event do you offer this service for (Max. {{maxEventType}} types)</label>
+            <tags-input ng-model="eventType" placeholder="Enter event type" add-from-autocomplete-only="true"
+                        max-tags="{{maxEventType}}">
+                <auto-complete source="eventTypeTags" load-on-focus="true"
+                               load-on-empty="true" min-length="0"></auto-complete>
+            </tags-input>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="modal-btn-full" ng-click="save(eventType, selectedCategory)"
+                name="button"
+                type="button">Publish
+        </button>
+    </div>
+</div>

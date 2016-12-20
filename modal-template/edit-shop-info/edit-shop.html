@@ -1,0 +1,118 @@
+<div class="modal-header">
+    <div aria-label="Close" class="close" ng-click="close();" type="button">
+        <span aria-hidden="true">&times;</span>
+    </div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Shop settings
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body">
+    <div class="goly-secondary-menu" role="tablist" ng-init="tab = 'info'">
+        <div role="presentation" ng-class="tab == 'info' ? 'goly-secondary-menu-active' : ''">
+            <a href="#info" aria-controls="info" role="tab" data-toggle="tab" ng-click="tab = 'info'">Shop
+                Information</a></div>
+        <div role="presentation" ng-class="tab == 'payout' ? 'goly-secondary-menu-active' : ''">
+            <a href="#payout" aria-controls="payout" role="tab" data-toggle="tab" ng-click="tab = 'payout'">Payout</a>
+        </div>
+    </div>
+
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="info">
+            <div class="form-input">
+                <label>Shop name</label>
+                <input placeholder="Enter name of the shop" ng-model="shop.name" maxlength="50" type="text">
+            </div>
+
+            <div class="form-input">
+                <label>Location</label>
+                <input placeholder="Enter address"
+                       ng-autocomplete
+                       ng-model="shop.address"
+                       options="options"
+                       type="text"
+                       name="location">
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">For PLUS shop only</div>
+                <div class="panel-body">
+                    <div class="form-input">
+                        <label>Phone number</label>
+                        <input placeholder="Enter phone number of the shop" maxlength="20" type="text"
+                               ng-disabled="!isPlus" ng-model="socialLinks.phone.link">
+                    </div>
+                    <div class="form-input">
+                        <label>Website link</label>
+                        <input placeholder="Enter website link of the shop" maxlength="255" type="text"
+                               ng-disabled="!isPlus" ng-model="socialLinks.website.link">
+                    </div>
+                    <div class="form-input">
+                        <label>Facebook Username</label>
+                        <input placeholder="Enter Facebook username of the shop" maxlength="50" type="text"
+                               ng-disabled="!isPlus" ng-model="socialLinks.facebook.link">
+                    </div>
+                    <div class="form-input">
+                        <label>Instagram Username</label>
+                        <input placeholder="Enter Instagram username of the shop" maxlength="30" type="text"
+                               ng-disabled="!isPlus" ng-model="socialLinks.instagram.link">
+                    </div>
+                    <div class="form-input">
+                        <label>Twitter Username</label>
+                        <input placeholder="Enter twitter username of the shop" maxlength="16" type="text"
+                               ng-disabled="!isPlus" ng-model="socialLinks.twitter.link">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="payout">
+            <label>Please enter your bank information here. This information is used to transfer the payment to your
+                bank
+                account if your customers pay online via credit card.</label><br/>
+            <div class="form-input-half">
+                <div class="input-half">
+                    <label>First name</label>
+                    <input
+                            placeholder="First name" type="text"
+                            name="firstname"
+                            ng-model="shop.payoutAccount.firstName">
+
+                </div>
+                <div class="input-half">
+                    <label>Last name</label>
+                    <input
+                            placeholder="Last name"
+                            type="text"
+                            name="lastname"
+                            ng-model="shop.payoutAccount.lastName">
+
+                </div>
+            </div>
+
+            <div class="form-input">
+                <label>Bank name</label>
+                <input placeholder="Bank name"
+                       type="text"
+                       name="bankName"
+                       ng-model="shop.payoutAccount.bankName">
+
+            </div>
+
+            <div class="form-input">
+                <label>Account number</label>
+                <input placeholder="Account number"
+                       type="text"
+                       name="bankAccount"
+                       ng-model="shop.payoutAccount.bankAccount">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="modal-btn-half btn-success" ng-click="getPlus()" type="button" ng-if="!isPlus && tab === 'info'">
+        Get Plus
+    </button>
+    <button ng-click="editShop()" type="button"
+            ng-class="(isPlus || tab !== 'info') ? 'modal-btn-full':'modal-btn-half'">
+        Save
+    </button>
+</div>

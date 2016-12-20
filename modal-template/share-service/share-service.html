@@ -1,0 +1,51 @@
+<div class="modal-header">
+    <div aria-label="Close" class="close" ng-click="close();" type="button">
+        <span aria-hidden="true">&times;</span>
+    </div>
+    <h3 class="modal-title underline-style-section-header" id="myModalLabel">Share your service
+        <div></div>
+    </h3>
+</div>
+<div class="modal-body modal-invite-friends">
+    <label>Share with family and friends to promote your service and get their recommendation!</label>
+
+    <h4>Share link</h4>
+    <div class="invitation-link" id="invitation-link">{{link}}</div>
+    <div class="share-buttons-container">
+        <a class="btn btn-copy btn-share" ng-click="copyLink()">
+            <i class="fa fa-link fa-button-icon"></i>Copy link
+        </a>&nbsp;
+        <div class="btn-group" uib-dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-share btn-success" uib-dropdown-toggle ng-disabled="disabled">
+                <i class="fa fa-share fa-button-icon"></i>Share
+            </button>
+            <ul class="dropdown-menu dropdown-social-share" uib-dropdown-menu role="menu"
+                aria-labelledby="single-button">
+                <li role="menuitem">
+                    <a target="_blank" ng-click="trackShare('Facebook')"
+                       ng-href="https://www.facebook.com/sharer/sharer.php?u={{link}}">
+                        <i class="fa fa-facebook"></i> Facebook
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a target="_blank" ng-click="trackShare('Twitter')"
+                       ng-href="https://twitter.com/home?status=Take a look at this service on Goly and start booking your event services today {{link}}">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                </li>
+                <li role="menuitem">
+                    <a target="_blank" ng-click="trackShare('Pinterest')"
+                       ng-href="https://pinterest.com/pin/create/button/?url={{link}}">
+                        <i class="fa fa-pinterest"></i> Pinterest
+                    </a>
+                </li>
+                <li role="menuitem" class="mobile-device-only">
+                    <a target="_blank" ng-click="trackShare('Whatsapp')"
+                       ng-href="whatsapp://send?text=Take a look at this service on Goly and start booking your event services today {{link}}">
+                        <i class="fa fa-whatsapp"></i> Whatsapp
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
